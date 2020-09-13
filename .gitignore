@@ -3,5 +3,4 @@ bin
 build
 .classpath
 .project
-*.bs.bat
 .settings
