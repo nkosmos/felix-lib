@@ -22,6 +22,8 @@ import java.util.UUID;
 
 import fr.nkosmos.felix.api.client.request.Request;
 import fr.nkosmos.felix.api.common.entities.marketplace.IResource;
+import fr.nkosmos.felix.api.common.entities.marketplace.comment.IComment;
+import fr.nkosmos.felix.api.common.entities.marketplace.comment.personal.IPersonalComment;
 import fr.nkosmos.felix.api.common.entities.marketplace.personal.IPersonalResource;
 import fr.nkosmos.felix.api.common.entities.stream.IApplication;
 import fr.nkosmos.felix.api.common.entities.user.IUser;
@@ -36,7 +38,7 @@ import fr.nkosmos.felix.api.common.exceptions.InvalidAuthenticationException;
 public interface IRequestWrapper {
 	
 	/**
-	 * Builds a request to get a User based on a {@link UUID}
+	 * Builds a request to get a User from a {@link UUID}
 	 * @param uuid
 	 * 		the user's uuid
 	 * @return a {@link Request} for the {@link IUser} with that uuid
@@ -44,7 +46,7 @@ public interface IRequestWrapper {
 	Request<IUser> requestUser(UUID uuid);
 
 	/**
-	 * Builds a request to get a PersonalUser based on a private token
+	 * Builds a request to get a PersonalUser from a private token
 	 * @param token
 	 * 		the user's token
 	 * @return a {@link Request} for the {@link IPersonalUser} with that token
@@ -52,7 +54,7 @@ public interface IRequestWrapper {
 	Request<IPersonalUser> requestUser(String token) throws InvalidAuthenticationException;
 	
 	/**
-	 * Builds a request to get a Resource based on a {@link UUID}
+	 * Builds a request to get a Resource from a {@link UUID}
 	 * @param uuid
 	 * 		the resource's uuid
 	 * @return a {@link Request} for the {@link IResource} with that uuid
@@ -60,7 +62,7 @@ public interface IRequestWrapper {
 	Request<IResource> requestResource(UUID uuid);
 	
 	/**
-	 * Builds a request to get a PersonalResource based on a private token
+	 * Builds a request to get a PersonalResource from a private token
 	 * @param token
 	 * 		the user's token
 	 * @param uuid
@@ -70,7 +72,7 @@ public interface IRequestWrapper {
 	Request<IPersonalResource> requestResource(String token, UUID uuid) throws InvalidAuthenticationException;
 	
 	/**
-	 * Builds a request to get all PersonalResources based on a private token
+	 * Builds a request to get all PersonalResources from a private token
 	 * @param token
 	 * 		the user's token
 	 * @return a {@link Request} for a {@link Set} containing the {@link IPersonalResource} with that token
@@ -78,7 +80,21 @@ public interface IRequestWrapper {
 	Request<Set<IPersonalResource>> requestResources(String token) throws InvalidAuthenticationException;
 
 	/**
-	 * Builds a request to get an Application based on a {@link UUID}
+	 * Builds a request to get a Comment from its UUID
+	 * @param uuid
+	 * 		the comment's uuid
+	 * @return a {@link Request} for the {@link IComment} with that uuid
+	 */
+	Request<IComment> requestComment(UUID uuid);
+
+	Request<Set<IComment>> requestComments(IUser user);
+	
+	Request<Set<IPersonalComment>> requestComment(String token, UUID uuid) throws InvalidAuthenticationException;
+	
+	Request<Set<IPersonalComment>> requestComments(String token) throws InvalidAuthenticationException;
+	
+	/**
+	 * Builds a request to get an Application from a {@link UUID}
 	 * @param uuid
 	 * 		the application's uuid
 	 * @return a {@link Request} for the {@link IApplication} with that uuid

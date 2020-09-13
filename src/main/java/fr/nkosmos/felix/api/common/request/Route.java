@@ -48,6 +48,12 @@ public class Route {
 	        
 		}
 		
+		public static class Authentication {
+		
+			
+		
+		}
+		
 		public static class Stream {
 			
 			

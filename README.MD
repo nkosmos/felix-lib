@@ -3,9 +3,9 @@
 The common library for the Felix Server/Client
 
 ## What is this?
-Felix is the name of our server-side API.
+Felix is the name of our server-side REST API.
 
-This library simplifies the interaction process and gives access to some model/utility classes
+This library simplifies the interaction process while also giving access to some common entity classes.
 
 ## Import
 You can import it using Maven or Gradle: (be sure to change `VERSION` to whatever version you want)
@@ -13,17 +13,17 @@ You can import it using Maven or Gradle: (be sure to change `VERSION` to whateve
 Gradle:
 ```gradle
 dependencies {
-	compile 'fr.nkosmos.felix:felix-api:VERSION'
+    compile 'fr.nkosmos.felix:felix-api:VERSION'
 }
 
 repositories {
-	maven {
-		url = "https://nkosmos.github.io/maven/"
-	}
+    maven {
+        url = "https://nkosmos.github.io/maven/"
+    }
 }
 ```
 
-Maven: (why)
+Maven: (why do you use maven? stop it... please...)
 ```xml
 <dependency>
     <groupId>fr.nkosmos.felix</groupId>
@@ -38,4 +38,4 @@ Maven: (why)
 ```
 
 ## License
-No license, idk why the fuck i'd want a license over that
+This project is licensed 

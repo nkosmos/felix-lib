@@ -45,5 +45,5 @@ public interface IFelixClient extends IRequestWrapper {
 	 * 		the entity class
 	 * @return a new {@link Request}
 	 */
-	<T> Request<T> request(CompiledRoute route, Class<T> clazz);
+	<T> Request<T> request(CompiledRoute route, Class<T> clazz, Object[] params);
 }

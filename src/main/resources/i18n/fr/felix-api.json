@@ -21,11 +21,11 @@
 				"timespan": {
 					"minute": "Minute",
 					"hourly": "Hourly",
-					"daily": "Daily",
-					"weekly": "Weekly",
-					"monthly": "Monthly",
-					"yearly": "Yearly",
-					"forever": "Forever"
+					"daily": "Journalier",
+					"weekly": "Hebdomadaire",
+					"monthly": "Mensuel",
+					"yearly": "Annuel",
+					"forever": "Toujours"
 				}
 			},
 			"user": {

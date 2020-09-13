@@ -19,6 +19,7 @@ package fr.nkosmos.felix.api.common.entities.stream;
 
 import java.util.UUID;
 
+import fr.nkosmos.felix.api.client.request.Request;
 import fr.nkosmos.felix.api.common.entities.statistic.IStatistic;
 
 /**
@@ -39,8 +40,8 @@ public interface IApplication {
 	UUID uuid();
 
 	/**
-	 * @return the downloads statistic
+	 * @return a pre-built request to get the downloads statistic
 	 */
-	IStatistic downloads();
+	Request<IStatistic> downloads();
 	
 }

@@ -17,8 +17,8 @@
 
 package fr.nkosmos.felix.api.common.entities.marketplace;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import fr.nkosmos.felix.api.client.request.Request;
@@ -67,7 +67,7 @@ public interface IResource {
 	/**
 	 * @return a pre-built request for getting the comments of this resource
 	 */
-	Request<List<IComment>> comments();
+	Request<Set<IComment>> comments();
 	
 	/**
 	 * @param rank
