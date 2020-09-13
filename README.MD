@@ -1,5 +1,4 @@
-# Felix API
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/nKosmos/felix-api?style=flat-square)
+# Felix API ![GitHub release (latest by date)](https://img.shields.io/github/v/release/nKosmos/felix-api?style=flat-square)
 
 The common library for the Felix Server/Client
 
