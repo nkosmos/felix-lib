@@ -38,4 +38,4 @@ Maven: (why do you use maven? stop it... please...)
 ```
 
 ## License
-This project is licensed 
+This project is under the [GNU LGPL v3.0](https://github.com/nkosmos/felix-api/blob/master/LICENSE) license.
