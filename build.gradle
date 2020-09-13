@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'maven-publish'
+}
+
+group 'fr.nkosmos.felix'
+version '1.0.0'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	implementation('com.google.code.gson:gson:2.8.1')
+	implementation("com.squareup.okhttp3:okhttp:4.8.1")
+
+	// https://projectlombok.org
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+}
+
+publishing.publications {
+	mavenJava(MavenPublication) {
+        from components.java
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}

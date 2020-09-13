@@ -1,0 +1,50 @@
+{
+	"felix": {
+		"api": {
+			"marketplace": {
+				"category": {
+					"modules": "Modules",
+					"cosmetics": "Cosmétiques",
+					"mappings": "Mappings",
+					"interfaces": "Interfaces",
+					"translations": "Traductions",
+					"others": "Autres"
+				},
+				"resource": {
+					"flags": {
+						"devlang": "Languages de Programmation",
+						"supported_languages": "Languages Disponibles"
+					}
+				}
+			},
+			"statistic": {
+				"timespan": {
+					"minute": "Minute",
+					"hourly": "Hourly",
+					"daily": "Daily",
+					"weekly": "Weekly",
+					"monthly": "Monthly",
+					"yearly": "Yearly",
+					"forever": "Forever"
+				}
+			},
+			"user": {
+				"subscription": {
+					"type": {
+						"none": "Aucune",
+						"premium": "Premium"
+					}
+				},
+				"rank": {
+					"member": "Membre",
+					"premium": "Premium",
+					"supporter": "Supporteur",
+					"support": "Support",
+					"moderator": "Modérateur",
+					"manager": "Responsable",
+					"admin": "Administrateur"
+				}
+			}
+		}
+	}
+}
