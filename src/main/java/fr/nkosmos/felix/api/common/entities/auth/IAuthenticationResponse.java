@@ -15,29 +15,13 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.server.sql;
-
-import java.sql.SQLException;
-
-import fr.nkosmos.felix.api.common.request.IRequestWrapper;
+package fr.nkosmos.felix.api.common.entities.auth;
 
 /**
- * Base interface for a SQL Wrapper around a specific SQL implementation (like SQLite or MySQL)
+ * Entity interface for an Authentication API response
  * 
  * @author xTrM_
  */
-public interface ISQLWrapper extends IRequestWrapper {
+public interface IAuthenticationResponse {
 
-	/**
-	 * @return the connection protocol
-	 */
-	String getConnexionProtocol();
-	
-	/**
-	 * Create the default tables
-	 * @throws SQLException
-	 * 		if something goes wrong
-	 */
-	void createTables() throws SQLException;
-	
 }

@@ -15,29 +15,13 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.server.sql;
-
-import java.sql.SQLException;
-
-import fr.nkosmos.felix.api.common.request.IRequestWrapper;
+package fr.nkosmos.felix.api.client.request;
 
 /**
- * Base interface for a SQL Wrapper around a specific SQL implementation (like SQLite or MySQL)
+ * The different HTTP request methods
  * 
  * @author xTrM_
  */
-public interface ISQLWrapper extends IRequestWrapper {
-
-	/**
-	 * @return the connection protocol
-	 */
-	String getConnexionProtocol();
-	
-	/**
-	 * Create the default tables
-	 * @throws SQLException
-	 * 		if something goes wrong
-	 */
-	void createTables() throws SQLException;
-	
+public enum Method {
+	DELETE, GET, HEAD, OPTIONS, POST, PUT, PATCH;
 }

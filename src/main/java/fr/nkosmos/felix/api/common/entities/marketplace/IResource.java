@@ -23,9 +23,9 @@ import java.util.UUID;
 
 import fr.nkosmos.felix.api.client.request.Request;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.IComment;
+import fr.nkosmos.felix.api.common.entities.personal.self.ISelfUser;
 import fr.nkosmos.felix.api.common.entities.statistic.IStatistic;
 import fr.nkosmos.felix.api.common.entities.user.UserRank;
-import fr.nkosmos.felix.api.common.entities.user.personal.IPersonalUser;
 
 /**
  * Entity interface for a publicly available marketplace resource
@@ -84,7 +84,7 @@ public interface IResource {
 	 * 		the comment to be posted
 	 * @return a pre-built request returning a Boolean for wheather or not the request succeeded
 	 */
-	Request<Boolean> postComment(IPersonalUser personalUser, IComment comment);
+	Request<Boolean> postComment(ISelfUser personalUser, IComment comment);
 	
 	
 }

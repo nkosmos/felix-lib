@@ -1,6 +1,6 @@
 plugins {
-	id 'java'
-	id 'maven-publish'
+    id 'java'
+    id 'maven-publish'
 }
 
 group 'fr.nkosmos.felix'
@@ -11,17 +11,18 @@ repositories {
 }
 
 dependencies {
-	implementation('com.google.code.gson:gson:2.8.1')
-	implementation("com.squareup.okhttp3:okhttp:4.8.1")
+    implementation('com.google.code.gson:gson:2.8.1')
 
-	// https://projectlombok.org
-	compileOnly 'org.projectlombok:lombok:1.18.4'
-	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    // https://projectlombok.org
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
 }
 
-publishing.publications {
-	mavenJava(MavenPublication) {
-        from components.java
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+        }
     }
 }
 
@@ -39,3 +40,5 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+build.dependsOn(generatePomFileForMavenJavaPublication)

@@ -23,7 +23,7 @@ repositories {
 }
 ```
 
-Maven: (why do you use maven? stop it... please...)
+Maven: (why... stop using maven... please...)
 ```xml
 <dependency>
     <groupId>fr.nkosmos.felix</groupId>

@@ -3,6 +3,5 @@ bin
 build
 .classpath
 .project
-.settings
 *.priv.bat
 *.priv

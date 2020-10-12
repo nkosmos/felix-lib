@@ -19,9 +19,11 @@ package fr.nkosmos.felix.api.client;
 
 import java.net.URL;
 
+import com.google.gson.JsonElement;
+
 import fr.nkosmos.felix.api.client.request.Request;
+import fr.nkosmos.felix.api.client.request.Route.CompiledRoute;
 import fr.nkosmos.felix.api.common.request.IRequestWrapper;
-import fr.nkosmos.felix.api.common.request.Route.CompiledRoute;
 
 /**
  * Base interface for a Client implementation of Felix
@@ -36,14 +38,27 @@ public interface IFelixClient extends IRequestWrapper {
 	URL getBaseURL();
 
 	/**
-	 * Prepare a request to a {@link CompiledRoute}
+	 * Prepares a request to a {@link CompiledRoute}
 	 * @param <T>
 	 * 		the type the request should return
 	 * @param route
 	 * 		the route used
-	 * @param clazz
-	 * 		the entity class
 	 * @return a new {@link Request}
 	 */
-	<T> Request<T> request(CompiledRoute route, Class<T> clazz, Object[] params);
+	default <T> Request<T> request(CompiledRoute route) {
+		return request(route, null);
+	}
+	
+	/**
+	 * Prepares a request to a {@link CompiledRoute} with a prepared {@link JsonElement}
+	 * @param <T>
+	 * 		the type the request should return
+	 * @param route
+	 * 		the route used
+	 * @param body
+	 * 		the request's json body
+	 * @return a new {@link Request}
+	 */
+	<T> Request<T> request(CompiledRoute route, JsonElement body);
+
 }

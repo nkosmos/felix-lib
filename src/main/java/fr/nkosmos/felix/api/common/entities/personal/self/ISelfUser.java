@@ -15,7 +15,7 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.user.personal;
+package fr.nkosmos.felix.api.common.entities.personal.self;
 
 import fr.nkosmos.felix.api.common.entities.user.IUser;
 
@@ -24,6 +24,6 @@ import fr.nkosmos.felix.api.common.entities.user.IUser;
  * 
  * @author xTrM_
  */
-public interface IPersonalUser extends IUser {
+public interface ISelfUser extends IUser {
 
 }

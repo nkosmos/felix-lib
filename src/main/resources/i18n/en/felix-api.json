@@ -1,8 +1,16 @@
 {
 	"felix": {
 		"api": {
+			"auth": {
+				"action": {
+					"login": "Login",
+					"register": "Register",
+					"logout": "Logout"
+				}
+			},
 			"marketplace": {
 				"category": {
+					"theme": "Theme",
 					"modules": "Modules",
 					"cosmetics": "Cosmetics",
 					"mappings": "Mappings",

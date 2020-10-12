@@ -15,15 +15,30 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.marketplace.personal;
-
-import fr.nkosmos.felix.api.common.entities.marketplace.IResource;
+package fr.nkosmos.felix.api.common.entities.error;
 
 /**
- * 
+ * Entity interface for any API Error
  * 
  * @author xTrM_
  */
-public interface IPersonalResource extends IResource {
+public interface IError {
+	
+	/**
+	 * @return the error's class
+	 */
+	default String errorClass() {
+		return "fr.nkosmos.felix.api.common.exceptions.FelixException";
+	}
+	
+	/**
+	 * @return the error's name
+	 */
+	String errorName();
+	
+	/**
+	 * @return the error message
+	 */
+	String errorMessage();
 
 }

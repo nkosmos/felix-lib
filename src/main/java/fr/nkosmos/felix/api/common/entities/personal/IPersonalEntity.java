@@ -15,13 +15,19 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.request;
+package fr.nkosmos.felix.api.common.entities.personal;
+
+import fr.nkosmos.felix.api.client.request.Request;
 
 /**
- * The different HTTP request methods
+ * Base interface for any personal entity that the user has any privilege on
  * 
  * @author xTrM_
  */
-public enum Method {
-	DELETE, GET, HEAD, OPTIONS, POST, PUT, PATCH;
+public interface IPersonalEntity {
+	
+	Request<Void> rename(String newName);
+	
+	Request<Void> delete();
+
 }

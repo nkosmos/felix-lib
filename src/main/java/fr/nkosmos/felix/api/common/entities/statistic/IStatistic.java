@@ -38,6 +38,11 @@ public interface IStatistic {
 	
 	/**
 	 * Registers a stat value
+	 * 
+	 * @param unixTimestamp
+	 * 		the value's timestamp
+	 * @param value
+	 * 		the value
 	 * @return if this value has correctly been added
 	 */
 	boolean add(long unixTimestamp, int value);
@@ -54,7 +59,7 @@ public interface IStatistic {
 	
 	/**
 	 * Trims this statistic's value to a certain {@link StatisticTimespan Timespan}
-	 * @value timespan
+	 * @param timespan
 	 * 		the desired timespan
 	 * @return this statistic's trimmed value
 	 */

@@ -15,33 +15,30 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.stream;
-
-import java.util.UUID;
-
-import fr.nkosmos.felix.api.client.request.Request;
-import fr.nkosmos.felix.api.common.entities.statistic.IStatistic;
+package fr.nkosmos.felix.api.common.exceptions;
 
 /**
- * Entity interface for any Rupture Application
+ * Exception thrown when usage of an invalid api key
  * 
  * @author xTrM_
  */
-public interface IApplication {
-	
-	/**
-	 * @return the name
-	 */
-	String name();
-	
-	/**
-	 * @return the uuid
-	 */
-	UUID uuid();
+@SuppressWarnings("serial")
+public class DeniedException extends FelixException {
 
-	/**
-	 * @return a pre-built request to get the downloads statistic
-	 */
-	Request<IStatistic> downloads();
+	public DeniedException() {
+		super();
+	}
+
+	public DeniedException(String message) {
+		super(message);
+	}
+
+	public DeniedException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public DeniedException(Throwable cause) {
+		super(cause);
+	}
 	
 }

@@ -15,29 +15,35 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.server.sql;
+package fr.nkosmos.felix.api.common.entities.discord;
 
-import java.sql.SQLException;
-
-import fr.nkosmos.felix.api.common.request.IRequestWrapper;
+import java.util.UUID;
 
 /**
- * Base interface for a SQL Wrapper around a specific SQL implementation (like SQLite or MySQL)
+ * Entity interface for a linked discord user
  * 
  * @author xTrM_
  */
-public interface ISQLWrapper extends IRequestWrapper {
+public interface IDiscordUser {
+	
+	/**
+	 * @return the user's discord id
+	 */
+	long discordId();
+	
+	/**
+	 * @return the user's discord name
+	 */
+	String name();
+	
+	/**
+	 * @return the user's discriminator
+	 */
+	String discrim();
+	
+	/**
+	 * @return the user's linked account
+	 */
+	UUID accountUUID();
 
-	/**
-	 * @return the connection protocol
-	 */
-	String getConnexionProtocol();
-	
-	/**
-	 * Create the default tables
-	 * @throws SQLException
-	 * 		if something goes wrong
-	 */
-	void createTables() throws SQLException;
-	
 }

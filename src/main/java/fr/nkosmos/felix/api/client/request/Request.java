@@ -17,7 +17,9 @@
 
 package fr.nkosmos.felix.api.client.request;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
@@ -41,7 +43,7 @@ public interface Request<T> {
 	 * @param success
 	 * 		the {@link Consumer} called on success
 	 */
-	default void queue(Consumer<? extends T> success) {
+	default void queue(Consumer<T> success) {
 		queue(success, null);
 	}
 	
@@ -52,7 +54,16 @@ public interface Request<T> {
 	 * @param error
 	 * 		the {@link Consumer} called on error
 	 */
-	void queue(Consumer<? extends T> success, Consumer<? extends Throwable> error);
+	void queue(Consumer<T> success, Consumer<Throwable> error);
+	
+	/**
+	 * Queues this request
+	 * @param callback
+	 * 		the {@link BiConsumer} called on success/error
+	 */
+	default void queue(BiConsumer<T, Throwable> callback) {
+		queue(resp -> callback.accept(resp, null), err -> callback.accept(null, err));
+	}
 	
 	/**
 	 * Queues this request after a certain delay without any callback
@@ -74,7 +85,7 @@ public interface Request<T> {
 	 * @param success
 	 * 		the {@link Consumer} called on success
 	 */
-	default void queueAfter(int delay, TimeUnit unit, Consumer<? extends T> success) {
+	default void queueAfter(int delay, TimeUnit unit, Consumer<T> success) {
 		queueAfter(delay, unit, success, null);
 	}
 
@@ -89,7 +100,7 @@ public interface Request<T> {
 	 * @param error
 	 * 		the {@link Consumer} called on error
 	 */
-	void queueAfter(int delay, TimeUnit unit, Consumer<? extends T> success, Consumer<? extends Throwable> error);
+	void queueAfter(int delay, TimeUnit unit, Consumer<T> success, Consumer<Throwable> error);
 	
 	/**
 	 * Blocks the current {@link Thread} until it receives the server's response
@@ -113,5 +124,20 @@ public interface Request<T> {
 		}
 		return complete();
 	}
+	
+	/**
+	 * @return this request's headers map
+	 */
+	Map<String, Object> headers();
+	
+	/**
+	 * Adds a header to this request
+	 * @param key
+	 * 		the header's key
+	 * @param value
+	 * 		the header's value
+	 * @return this request's instance (used for chaining)
+	 */
+	Request<T> addHeader(String key, Object value);
 	
 }

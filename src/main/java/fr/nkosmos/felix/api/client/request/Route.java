@@ -15,14 +15,16 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.request;
+package fr.nkosmos.felix.api.client.request;
+
+import static fr.nkosmos.felix.api.client.request.Method.GET;
+import static fr.nkosmos.felix.api.client.request.Method.POST;
+import static fr.nkosmos.felix.api.client.request.Method.PUT;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import lombok.Data;
-
-import static fr.nkosmos.felix.api.common.request.Method.*;
 
 /**
  * Class defining how a request to an endpoint should be handled with which arguments.<br>
@@ -34,11 +36,12 @@ import static fr.nkosmos.felix.api.common.request.Method.*;
 @Data
 public class Route {
 
-	public static class Defaults {
+	public static class Defaults { 
 		
 		public static class Self {
 			
-			
+			public static final Route GET_SELF = new Route(GET, "users/self");
+			public static final Route UPDATE_SELF = new Route(PUT, "users/self");
 			
 		}
 		
@@ -50,28 +53,36 @@ public class Route {
 		
 		public static class Authentication {
 		
-			
+			public static final Route LOGIN = new Route(POST, "auth/login");
+			public static final Route DISCONNECT = new Route(POST, "auth/disconnect");
+			public static final Route INTEGRITY = new Route(POST, "auth/integrity");
 		
 		}
 		
-		public static class Stream {
+		public static class Application {
 			
-			
+			public static final Route LIST_APPLICATIONS = new Route(GET, "application/list");
+			public static final Route GET_APPLICATION_INFO = new Route(GET, "application/%s");
+			public static final Route GET_STREAM = new Route(POST, "application/%s/download/%s");
+			public static final Route GET_STATISTICS = new Route(POST, "application/%s/statistics");
 			
 		}
 		
 		public static class Marketplace {
 			
-			
-			
-		}
-		
-		public static class Statistics {
-			
-			
+			public static final Route LIST_RESOURCES = new Route(GET, "marketplace/repositories/list");
+			public static final Route GET_RESOURCE = new Route(GET, "marketplace/repositories/%s");
+			public static final Route GET_STREAM = new Route(GET, "marketplace/repositories/%s/download/%s");
+			public static final Route GET_STATISTICS = new Route(GET, "marketplace/repositories/%s/statistics");
 			
 		}
 		
+		public static class Discord {
+			
+			public static final Route USER_INFO = new Route(GET, "discord/users/%s");
+			public static final Route DISCORD_STATS = new Route(GET, "discord/statistics");
+			
+		}
 	}
 	
 	/** The request method */

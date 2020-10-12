@@ -29,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum MarketplaceCategory {
 
+	THEME("felix.api.marketplace.category.theme"),
 	MODULES("felix.api.marketplace.category.modules"),
 	COSMETICS("felix.api.marketplace.category.cosmetics"),
 	MAPPINGS("felix.api.marketplace.category.mappings"),

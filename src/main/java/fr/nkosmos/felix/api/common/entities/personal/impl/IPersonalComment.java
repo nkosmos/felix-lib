@@ -15,29 +15,16 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.server.sql;
+package fr.nkosmos.felix.api.common.entities.personal.impl;
 
-import java.sql.SQLException;
-
-import fr.nkosmos.felix.api.common.request.IRequestWrapper;
+import fr.nkosmos.felix.api.common.entities.marketplace.comment.IComment;
+import fr.nkosmos.felix.api.common.entities.personal.IPersonalEntity;
 
 /**
- * Base interface for a SQL Wrapper around a specific SQL implementation (like SQLite or MySQL)
+ * 
  * 
  * @author xTrM_
  */
-public interface ISQLWrapper extends IRequestWrapper {
+public interface IPersonalComment extends IComment, IPersonalEntity {
 
-	/**
-	 * @return the connection protocol
-	 */
-	String getConnexionProtocol();
-	
-	/**
-	 * Create the default tables
-	 * @throws SQLException
-	 * 		if something goes wrong
-	 */
-	void createTables() throws SQLException;
-	
 }

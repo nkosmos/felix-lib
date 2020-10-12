@@ -37,7 +37,7 @@ public enum StatisticTimespan {
 	YEARLY("felix.api.statistic.timespan.yearly"),
 	FOREVER("felix.api.statistic.timespan.forever");
 	
-	/** The i18n description (used for translations) */
-	private final String i18nDescription;
+	/** The i18n name (used for translations) */
+	private final String i18nName;
 	
 }

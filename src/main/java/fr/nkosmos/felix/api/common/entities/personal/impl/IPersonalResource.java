@@ -15,14 +15,16 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.marketplace.comment.personal;
+package fr.nkosmos.felix.api.common.entities.personal.impl;
 
-import fr.nkosmos.felix.api.common.entities.marketplace.comment.IComment;
+import fr.nkosmos.felix.api.common.entities.marketplace.IResource;
+import fr.nkosmos.felix.api.common.entities.personal.IPersonalEntity;
 
 /**
  * 
+ * 
  * @author xTrM_
  */
-public interface IPersonalComment extends IComment {
+public interface IPersonalResource extends IResource, IPersonalEntity {
 
 }
