@@ -15,37 +15,16 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.cache;
+package fr.nkosmos.felix.api.common.entities.personal.impl;
 
-import fr.nkosmos.felix.api.client.request.Request;
+import fr.nkosmos.felix.api.common.entities.application.IApplication;
+import fr.nkosmos.felix.api.common.entities.personal.IPersonalEntity;
 
 /**
- * Provides an easy way to cache and clear a request and its value
+ * 
  * 
  * @author xTrM_
  */
-public interface Cached<T> {
-	
-	/**
-	 * @return the request to refresh the cached object
-	 */
-	Request<T> getRequest();
+public interface IPersonalApplication extends IApplication, IPersonalEntity {
 
-	/**
-	 * @return get the cached object
-	 */
-	T get();
-	
-	/**
-	 * Refresh the cached object
-	 * @return if the object has been successfully refreshed
-	 */
-	boolean refresh();
-	
-	/**
-	 * Clears the cached object
-	 * @return if the object has been successfully cleared
-	 */
-	boolean clear();
-	
 }

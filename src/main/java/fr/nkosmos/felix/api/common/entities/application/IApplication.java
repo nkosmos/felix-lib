@@ -60,12 +60,6 @@ public interface IApplication {
 	 */
 	Request<IStatistic> downloads();
 	
-	/**
-	 * @return wheather or not this application requires Premium access
-	 */
-	default boolean premiumOnly() {
-		return true;
-	}
 	
 	/**
 	 * @return wheather or not this application is available

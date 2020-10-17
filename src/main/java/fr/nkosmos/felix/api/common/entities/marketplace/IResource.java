@@ -72,9 +72,9 @@ public interface IResource {
 	/**
 	 * @param rank
 	 * 		the user rank
-	 * @return a pre-built request for getting if this resource is accepting comments for this rank
+	 * @return wheather or not this resource is accepting comments for this rank
 	 */
-	Request<Boolean> acceptsComments(UserRank rank);
+	boolean acceptsComments(UserRank rank);
 	
 	/**
 	 * Builds a request to post a comment to this resource

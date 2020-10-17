@@ -17,6 +17,7 @@
 
 package fr.nkosmos.felix.api.common.entities.user;
 
+import java.util.Map;
 import java.util.UUID;
 
 import fr.nkosmos.felix.api.common.entities.user.subscription.ISubscriptionData;
@@ -54,9 +55,9 @@ public interface IUser {
 	String b64image();
 	
 	/**
-	 * @return the user's subscription type
+	 * @return the user's subscription type mapped to an application's uuid
 	 */
-	ISubscriptionData subscription();
+	Map<ISubscriptionData, UUID> subscriptions();
 	
 	/**
 	 * @return the user's website rank

@@ -17,7 +17,6 @@
 
 package fr.nkosmos.felix.api.client.request;
 
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -124,20 +123,17 @@ public interface Request<T> {
 		}
 		return complete();
 	}
+
+	/**
+	 * Adds the provided API Key to the request
+	 * @param apiKey
+	 */
+	void addAPIKey(String apiKey);
 	
 	/**
-	 * @return this request's headers map
+	 * Adds the provided Authorization Token to the request
+	 * @param authorizationToken
 	 */
-	Map<String, Object> headers();
-	
-	/**
-	 * Adds a header to this request
-	 * @param key
-	 * 		the header's key
-	 * @param value
-	 * 		the header's value
-	 * @return this request's instance (used for chaining)
-	 */
-	Request<T> addHeader(String key, Object value);
+	void addAuthorizationToken(String authorizationToken);
 	
 }
