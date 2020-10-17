@@ -30,12 +30,12 @@ import lombok.RequiredArgsConstructor;
 public enum MarketplaceCategory {
 
 	THEME("felix.api.marketplace.category.theme"),
-	MODULES("felix.api.marketplace.category.modules"),
-	COSMETICS("felix.api.marketplace.category.cosmetics"),
-	MAPPINGS("felix.api.marketplace.category.mappings"),
-	INTERFACES("felix.api.marketplace.category.interfaces"),
-	TRANSLATIONS("felix.api.marketplace.category.translations"),
-	OTHERS("felix.api.marketplace.category.others");
+	MODULE("felix.api.marketplace.category.module"),
+	COSMETIC("felix.api.marketplace.category.cosmetic"),
+	MAPPING("felix.api.marketplace.category.mapping"),
+	INTERFACE("felix.api.marketplace.category.interface"),
+	TRANSLATION("felix.api.marketplace.category.translation"),
+	OTHER("felix.api.marketplace.category.other");
 	
 	/** The i18n name (used for translations) */
 	private final String i18nName;

@@ -11,12 +11,12 @@
 			"marketplace": {
 				"category": {
 					"theme": "Theme",
-					"modules": "Modules",
-					"cosmetics": "Cosmetics",
-					"mappings": "Mappings",
-					"interfaces": "Interfaces",
-					"translations": "Translations",
-					"others": "Others"
+					"module": "Module",
+					"cosmetic": "Cosmetic",
+					"mapping": "Mapping",
+					"interface": "Interface",
+					"translation": "Translation",
+					"other": "Other"
 				},
 				"resource": {
 					"flags": {
