@@ -24,11 +24,13 @@ package fr.nkosmos.felix.api.common.entities.error;
  */
 public interface IError {
 	
+	static final String EXCEPTION_PACKAGE = "fr.nkosmos.felix.api.common.exceptions";
+	
 	/**
 	 * @return the error's class
 	 */
 	default String errorClass() {
-		return "fr.nkosmos.felix.api.common.exceptions.FelixException";
+		return EXCEPTION_PACKAGE + "." + "FelixException";
 	}
 	
 	/**
