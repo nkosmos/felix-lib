@@ -17,6 +17,7 @@
 
 package fr.nkosmos.felix.api.server.sql;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import fr.nkosmos.felix.api.common.request.IRequestWrapper;
@@ -30,9 +31,11 @@ public interface ISQLWrapper extends IRequestWrapper {
 
 	/**
 	 * @return the connection protocol
+	 * @throws SQLException
+	 * 		if something goes wrong
 	 */
-	String getConnexionProtocol();
-	
+	Connection createConnection() throws SQLException;
+
 	/**
 	 * Create the default tables
 	 * @throws SQLException

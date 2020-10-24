@@ -127,12 +127,14 @@ public interface Request<T> {
 	/**
 	 * Adds the provided API Key to the request
 	 * @param apiKey
+	 * 		the user's api key
 	 */
 	void addAPIKey(String apiKey);
 	
 	/**
 	 * Adds the provided Authorization Token to the request
 	 * @param authorizationToken
+	 * 		the user's authrorization token
 	 */
 	void addAuthorizationToken(String authorizationToken);
 	
