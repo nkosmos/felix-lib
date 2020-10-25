@@ -17,7 +17,7 @@
 
 package fr.nkosmos.felix.api.server;
 
-import fr.nkosmos.felix.api.server.sql.ISQLWrapper;
+import com.mongodb.client.MongoClient;
 
 /**
  * Base interface for a Felix API server
@@ -40,8 +40,8 @@ public interface IFelixServer {
 	void load();
 	
 	/**
-	 * @return the SQL wrapper
+	 * @return the {@link MongoClient} instance
 	 */
-	ISQLWrapper getSQLWrapper();
+	MongoClient getMongo();
 
 }
