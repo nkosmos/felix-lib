@@ -27,6 +27,19 @@ publishing {
     }
 }
 
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "${url}/repository/maven-releases/") {
+                authentication(userName: username, password: password)
+            }
+            snapshotRepository(url: "${url}/repository/maven-snapshots") {
+                authentication(userName: username, password: password)
+            }
+        }
+    }
+}
+
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
     from sourceSets.main.allSource
