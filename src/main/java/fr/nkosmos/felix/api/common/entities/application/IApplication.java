@@ -60,8 +60,6 @@ public interface IApplication {
 	 */
 	Request<IStatistic> downloads();
 	
-	
-	
 	/**
 	 * @return wheather or not this application is available
 	 */
