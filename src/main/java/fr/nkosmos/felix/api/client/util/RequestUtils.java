@@ -21,8 +21,8 @@ import java.util.zip.InflaterInputStream;
  */
 @SuppressWarnings("unchecked")
 public class RequestUtils {
-	
-	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public static InputStream getInputStream(Response response) {
         ResponseBody body = response.body();
@@ -45,7 +45,7 @@ public class RequestUtils {
         return body.byteStream();
     }
     
-	public static <T> void handleError(RequestContext<T> context) {
+    public static <T> void handleError(RequestContext<T> context) {
         Response response = context.getResponse();
         ResponseBody body = response.body();
         if (body == null) {
@@ -61,13 +61,13 @@ public class RequestUtils {
         switch (response.code()) {
             case 403:
                 fr.nkosmos.felix.api.common.entities.error.Error error = toJson(response, fr.nkosmos.felix.api.common.entities.error.Error.class);
-				try {
-					Class<? extends FelixException> exceptionClass = (Class<? extends FelixException>) Class.forName(error.getErrorClass());
-					FelixException exception = exceptionClass.getConstructor(String.class).newInstance(error.getErrorName() + "->" + error.getErrorMessage());
-					context.getErrorConsumer().accept(exception);
-				} catch (ReflectiveOperationException e) {
-					e.printStackTrace();
-				}
+                try {
+                    Class<? extends FelixException> exceptionClass = (Class<? extends FelixException>) Class.forName(error.getErrorClass());
+                    FelixException exception = exceptionClass.getConstructor(String.class).newInstance(error.getErrorName() + "->" + error.getErrorMessage());
+                    context.getErrorConsumer().accept(exception);
+                } catch (ReflectiveOperationException e) {
+                    e.printStackTrace();
+                }
                 break;
             case 404:
                 context.getSuccessConsumer().accept(null);
@@ -81,7 +81,7 @@ public class RequestUtils {
         }
     }
     
-	public static <T> T toJson(Response resp, Class<T> clazz){
-    	return GSON.fromJson(new InputStreamReader(getInputStream(resp)), clazz);
+    public static <T> T toJson(Response resp, Class<T> clazz){
+        return GSON.fromJson(new InputStreamReader(getInputStream(resp)), clazz);
     }
 }
