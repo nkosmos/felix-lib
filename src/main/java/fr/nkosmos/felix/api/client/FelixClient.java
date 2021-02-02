@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
  */
 public interface FelixClient extends IClientWrapper {
 
-	class Builder {
+    class Builder {
         private OkHttpClient client;
         private RateLimiterFactory rateLimiterFactory;
         private boolean trackCallSites;
@@ -52,5 +52,5 @@ public interface FelixClient extends IClientWrapper {
             return this;
         }
     }
-	
+
 }
