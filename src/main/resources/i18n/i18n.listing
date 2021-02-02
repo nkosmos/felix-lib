@@ -1,0 +1,10 @@
+{
+	"project": "felix-lib",
+	"languages": [
+		"en",
+		"fr"
+	],
+	"files": [
+		"felix-lib"
+	]
+}

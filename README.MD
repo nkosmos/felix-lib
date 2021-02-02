@@ -1,9 +1,9 @@
-# Felix API ![GitHub release (latest by date)](https://img.shields.io/github/v/release/nKosmos/felix-api?style=flat-square)
+# Felix-Lib ![GitHub release (latest by date)](https://img.shields.io/github/v/release/nKosmos/felix-lib?style=flat-square)
 
-The common library for the Felix Server/Client
+The common library for the Felix API server/client & Felix IPC.
 
 ## What is this?
-Felix is the name of our server-side REST API.
+Felix is the name of our server/client communication API & IPC Daemon.
 
 This library simplifies the interaction process while also giving access to some common entity classes.
 
@@ -13,29 +13,29 @@ You can import it using Maven or Gradle: (be sure to change `VERSION` to whateve
 Gradle:
 ```gradle
 dependencies {
-    compile 'fr.nkosmos.felix:felix-api:VERSION'
+    compile 'com.github.nkosmos:felix-lib:VERSION'
 }
 
 repositories {
     maven {
-        url = "https://nkosmos.github.io/maven/"
+        url = 'https://jitpack.io'
     }
 }
 ```
 
 Maven: (why... stop using maven... please...)
 ```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+
 <dependency>
-    <groupId>fr.nkosmos.felix</groupId>
-    <artifactId>felix-api</artifactId>
+    <groupId>com.github.nkosmos</groupId>
+    <artifactId>felix-lib</artifactId>
     <version>VERSION</version>
 </dependency>
-<repository>
-    <id>nkosmos</id>
-    <name>nkosmos</name>
-    <url>https://nkosmos.github.io/maven</url>
-</repository>
 ```
 
 ## License
-This project is under the [GNU LGPL v3.0](https://github.com/nkosmos/felix-api/blob/master/LICENSE) license.
+This project is under the [GNU LGPL v3.0](https://github.com/nkosmos/felix-lib/blob/master/LICENSE) license.
