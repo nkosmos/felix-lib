@@ -15,19 +15,28 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.personal;
+package fr.nkosmos.felix.api.common.entities.user;
 
-import fr.nkosmos.felix.api.client.request.Request;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
- * Base interface for any personal entity that the user has any privilege on
+ * Enum for website user types
  * 
  * @author xTrM_
  */
-public interface IPersonalEntity {
-	
-	Request<Void> rename(String newName);
-	
-	Request<Void> delete();
+@Getter
+@RequiredArgsConstructor
+public enum UserType {
 
+	MEMBER("felix.api.user.type.member"),
+	SUPPORTER("felix.api.user.type.supporter"),
+	SUPPORT("felix.api.user.type.support"),
+	MOD("felix.api.user.type.moderator"),
+	MANAGER("felix.api.type.rank.manager"),
+	ADMIN("felix.api.type.rank.admin");
+	
+	/** The i18n name (for translation) */
+	private final String i18nName;
+	
 }

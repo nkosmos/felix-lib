@@ -43,7 +43,7 @@
 						"premium": "Premium"
 					}
 				},
-				"rank": {
+				"type": {
 					"member": "Member",
 					"premium": "Premium",
 					"supporter": "Supporter",

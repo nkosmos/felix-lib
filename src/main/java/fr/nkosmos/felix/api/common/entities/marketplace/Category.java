@@ -15,32 +15,29 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.server;
+package fr.nkosmos.felix.api.common.entities.marketplace;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
- * Provider for a Felix {@link IFelixServer Server instance}
+ * Enum of marketplace categories
  * 
  * @author xTrM_
  */
-public class ServerProvider {
+@Getter
+@RequiredArgsConstructor
+public enum Category {
+
+	THEME("felix.api.marketplace.category.theme"),
+	MODULE("felix.api.marketplace.category.module"),
+	COSMETIC("felix.api.marketplace.category.cosmetic"),
+	MAPPING("felix.api.marketplace.category.mapping"),
+	INTERFACE("felix.api.marketplace.category.interface"),
+	TRANSLATION("felix.api.marketplace.category.translation"),
+	OTHER("felix.api.marketplace.category.other");
 	
-	/** A {@link IFelixServer} instance */
-	private static IFelixServer server;
-	
-	/**
-	 * Define internally the server instance
-	 * @param server
-	 * 		the server instance
-	 */
-	static void _defineServer(IFelixServer server) {
-		ServerProvider.server = server;
-	}
-	
-	/**
-	 * @return a {@link IFelixServer} instance
-	 */
-	public static IFelixServer getServer() {
-		return server;
-	}
+	/** The i18n name (used for translations) */
+	private final String i18nName;
 
 }

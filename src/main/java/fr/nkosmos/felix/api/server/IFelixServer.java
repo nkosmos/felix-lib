@@ -17,7 +17,7 @@
 
 package fr.nkosmos.felix.api.server;
 
-import com.mongodb.client.MongoClient;
+import fr.nkosmos.felix.api.server.database.IDatabaseManager;
 
 /**
  * Base interface for a Felix API server
@@ -25,23 +25,15 @@ import com.mongodb.client.MongoClient;
  * @author xTrM_
  */
 public interface IFelixServer {
-	
-	/**
-	 * Internal loading sequence
-	 */
-	default void load0() {
-		ServerProvider._defineServer(this);
-		load();
-	}
-	
+
 	/**
 	 * Start the server
 	 */
 	void load();
 	
 	/**
-	 * @return the {@link MongoClient} instance
+	 * @return the {@link IDatabaseManager DatabaseManager} instance
 	 */
-	MongoClient getMongo();
+	IDatabaseManager getDatabase();
 
 }

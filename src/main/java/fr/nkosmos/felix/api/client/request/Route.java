@@ -1,30 +1,8 @@
-/**
- * This file is a part of the felix-api GitHub project.
- *
- * felix-api is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * felix-api is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
- */
-
 package fr.nkosmos.felix.api.client.request;
 
-import static fr.nkosmos.felix.api.client.request.Method.GET;
-import static fr.nkosmos.felix.api.client.request.Method.POST;
-import static fr.nkosmos.felix.api.client.request.Method.PUT;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import lombok.Data;
+
+import static fr.nkosmos.felix.api.client.request.Method.*;
 
 /**
  * Class defining how a request to an endpoint should be handled with which arguments.<br>
@@ -33,54 +11,44 @@ import lombok.Data;
  * 
  * @author xTrM_
  */
-@Data
-public class Route {
+public @Data class Route {
 
 	public static class Defaults { 
 		
 		public static class Self {
-			
-			public static final Route GET_SELF = new Route(GET, "users/self");
-			public static final Route UPDATE_SELF = new Route(PUT, "users/self");
-			
+			public static final Route GET_SELF = new Route(GET, "/users/self");
+			public static final Route UPDATE_SELF = new Route(PUT, "/users/self");
 		}
 		
 		public static class User {
-			
-			public static final Route GET_USER = new Route(GET, "users/%s");
-	        
+			public static final Route GET_USER = new Route(GET, "/users/%s");
 		}
 		
 		public static class Authentication {
-		
-			public static final Route LOGIN = new Route(POST, "auth/login");
-			public static final Route DISCONNECT = new Route(POST, "auth/disconnect");
-			public static final Route INTEGRITY = new Route(POST, "auth/integrity");
-		
+			public static final Route LOGIN = new Route(POST, "/auth/login");
+			public static final Route DISCONNECT = new Route(POST, "/auth/disconnect");
+			public static final Route INTEGRITY = new Route(POST, "/auth/integrity");
 		}
 		
 		public static class Application {
-			
-			public static final Route LIST_APPLICATIONS = new Route(GET, "application/list");
-			public static final Route GET_APPLICATION_INFO = new Route(GET, "application/%s");
-			public static final Route GET_STREAM = new Route(POST, "application/%s/download/%s");
-			public static final Route GET_STATISTICS = new Route(POST, "application/%s/statistics");
-			
+			public static final Route LIST_APPLICATIONS = new Route(GET, "/applications");
+			public static final Route GET_APPLICATION_INFO = new Route(GET, "/applications/%s");
+			public static final Route GET_STREAM = new Route(POST, "/applications/%s/download/%s");
+			public static final Route GET_STATISTICS = new Route(POST, "/applications/%s/statistics");
 		}
 		
 		public static class Marketplace {
-			
-			public static final Route LIST_RESOURCES = new Route(GET, "marketplace/repositories/list");
-			public static final Route GET_RESOURCE = new Route(GET, "marketplace/repositories/%s");
-			public static final Route GET_STREAM = new Route(GET, "marketplace/repositories/%s/download/%s");
-			public static final Route GET_STATISTICS = new Route(GET, "marketplace/repositories/%s/statistics");
-			
+			public static final Route LIST_RESOURCES = new Route(GET, "/marketplace/repositories/list");
+			public static final Route GET_RESOURCE = new Route(GET, "/marketplace/repositories/%s");
+			public static final Route GET_STREAM = new Route(GET, "/marketplace/repositories/%s/download/%s");
+			public static final Route GET_STATISTICS = new Route(GET, "/marketplace/repositories/%s/statistics");
 		}
 		
 		public static class Discord {
-			
-			public static final Route USER_INFO = new Route(GET, "discord/users/%s");
-			public static final Route DISCORD_STATS = new Route(GET, "discord/statistics");
+			public static final Route USER_INFO = new Route(GET, "/discord/users/%s");
+		}
+		
+		public static class Statistics {
 			
 		}
 	}
@@ -105,7 +73,7 @@ public class Route {
 		int paramCount = 0;
 		int count2 = 0;
 		
-		for(int i = 0; i < endpoint.length(); i++) {
+		for(int i = 0; i < (endpoint != null ? endpoint.length() : 0); i++) {
 			if(endpoint.charAt(i) == '{') {
 				paramCount++;
 			}
@@ -126,13 +94,12 @@ public class Route {
 	 * 
 	 * @author xTrM_
 	 */
-	@Data
-	public static class CompiledRoute {
+	public static @Data class CompiledRoute {
 		private final Route baseRoute;
 		private final String endpoint;
 		
-		public URL getURL(URL base) throws MalformedURLException {
-			return new URL(base, this.endpoint);
+		public String getURL(String base) {
+			return base + this.endpoint;
 		}
 	}
 }

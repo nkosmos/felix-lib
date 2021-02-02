@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 public enum SubscriptionType {
 
 	NONE("felix.api.user.subscription.type.none"),
-	PREMIUM("felix.api.user.subscription.type.premium");
+	SUBSCRIBED("felix.api.user.subscription.type.subscribed");
 	
 	/** The i18n type (used for translations) */
 	private final String i18nDescription;

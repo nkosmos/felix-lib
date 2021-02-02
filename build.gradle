@@ -1,19 +1,20 @@
 plugins {
     id 'java'
-    id 'maven'
     id 'maven-publish'
 }
 
 group 'fr.nkosmos.felix'
-version '0.4.9'
+version '0.6.0'
 
 repositories {
     jcenter()
 }
 
 dependencies {
+    implementation("org.scala-sbt.ipcsocket:ipcsocket:1.3.0")
     implementation('com.google.code.gson:gson:2.8.1')
-    implementation('org.mongodb:mongo-java-driver:3.12.7')
+    implementation('com.github.natanbc:reliqua:2.4')
+    implementation('org.apache.logging.log4j:log4j-api:2.13.3')
 
     // https://projectlombok.org
     compileOnly 'org.projectlombok:lombok:1.18.4'
@@ -22,21 +23,8 @@ dependencies {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        gpr(MavenPublication) {
             from(components.java)
-        }
-    }
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "${url}/repository/maven-releases/") {
-                authentication(userName: username, password: password)
-            }
-            snapshotRepository(url: "${url}/repository/maven-snapshots") {
-                authentication(userName: username, password: password)
-            }
         }
     }
 }
@@ -55,5 +43,3 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
-
-build.dependsOn(generatePomFileForMavenJavaPublication)

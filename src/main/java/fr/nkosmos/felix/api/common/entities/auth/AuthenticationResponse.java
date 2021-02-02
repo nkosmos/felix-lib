@@ -15,16 +15,18 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.personal.impl;
+package fr.nkosmos.felix.api.common.entities.auth;
 
-import fr.nkosmos.felix.api.common.entities.marketplace.IResource;
-import fr.nkosmos.felix.api.common.entities.personal.IPersonalEntity;
+import lombok.Data;
 
 /**
- * 
+ * Entity interface for an Authentication API response
  * 
  * @author xTrM_
  */
-public interface IPersonalResource extends IResource, IPersonalEntity {
+public @Data class AuthenticationResponse {
 
+	private final int responseOpcode;
+	private final String data;
+	
 }

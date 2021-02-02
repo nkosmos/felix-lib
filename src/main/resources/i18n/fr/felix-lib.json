@@ -26,6 +26,12 @@
 				}
 			},
 			"statistic": {
+				"scope": {
+					"application": "Application",
+					"discord": "Discord",
+					"resource": "Resource",
+					"user": "Utilisateur"
+				},
 				"timespan": {
 					"minute": "Minute",
 					"hourly": "Hourly",
@@ -43,7 +49,7 @@
 						"premium": "Premium"
 					}
 				},
-				"rank": {
+				"type": {
 					"member": "Membre",
 					"premium": "Premium",
 					"supporter": "Supporter",

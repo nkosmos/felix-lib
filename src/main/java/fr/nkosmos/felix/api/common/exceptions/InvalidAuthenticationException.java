@@ -22,23 +22,17 @@ package fr.nkosmos.felix.api.common.exceptions;
  * 
  * @author xTrM_
  */
-@SuppressWarnings("serial")
 public class InvalidAuthenticationException extends FelixException {
-
-	public InvalidAuthenticationException() {
-		super();
-	}
 
 	public InvalidAuthenticationException(String message) {
 		super(message);
-	}
-
-	public InvalidAuthenticationException(String message, Throwable cause) {
-		super(message, cause);
 	}
 
 	public InvalidAuthenticationException(Throwable cause) {
 		super(cause);
 	}
 	
+	public InvalidAuthenticationException(String message, StackTraceElement[] callsite) {
+		super(message, callsite);
+	}
 }

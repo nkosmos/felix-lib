@@ -22,23 +22,18 @@ package fr.nkosmos.felix.api.common.exceptions;
  * 
  * @author xTrM_
  */
-@SuppressWarnings("serial")
 public class RateLimitException extends FelixException {
-	
-	public RateLimitException() {
-		super();
-	}
 
 	public RateLimitException(String message) {
 		super(message);
 	}
 
-	public RateLimitException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
 	public RateLimitException(Throwable cause) {
 		super(cause);
+	}
+	
+	public RateLimitException(String message, StackTraceElement[] callsite) {
+		super(message, callsite);
 	}
 
 }

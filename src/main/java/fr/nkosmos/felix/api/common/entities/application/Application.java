@@ -15,15 +15,24 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.personal.self;
+package fr.nkosmos.felix.api.common.entities.application;
 
-import fr.nkosmos.felix.api.common.entities.user.IUser;
+import lombok.Data;
+
+import java.net.URL;
+import java.util.UUID;
 
 /**
- * Entity interface for your user instance, containing private information or setters
+ * Entity representation of any Kosmos Application
  * 
  * @author xTrM_
  */
-public interface ISelfUser extends IUser {
-
+public @Data class Application {
+	
+	private final String name, version;
+	private final UUID uuid;
+	private final UUID[] authors;
+	private final URL bundleURL;
+	private final boolean available;
+	
 }

@@ -15,29 +15,21 @@
  * along with felix-api. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package fr.nkosmos.felix.api.common.entities.marketplace;
+package fr.nkosmos.felix.api.common.entities.discord;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import java.util.UUID;
+
+import lombok.Data;
 
 /**
- * Enum of marketplace categories
+ * Entity representation of a linked discord user
  * 
  * @author xTrM_
  */
-@Getter
-@RequiredArgsConstructor
-public enum MarketplaceCategory {
-
-	THEME("felix.api.marketplace.category.theme"),
-	MODULE("felix.api.marketplace.category.module"),
-	COSMETIC("felix.api.marketplace.category.cosmetic"),
-	MAPPING("felix.api.marketplace.category.mapping"),
-	INTERFACE("felix.api.marketplace.category.interface"),
-	TRANSLATION("felix.api.marketplace.category.translation"),
-	OTHER("felix.api.marketplace.category.other");
+public @Data class DiscordUser {
 	
-	/** The i18n name (used for translations) */
-	private final String i18nName;
+	private final long discordId;
+	private final String name, discrim;
+	private final UUID linkedUserUUID;
 
 }
