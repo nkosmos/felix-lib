@@ -26,6 +26,12 @@
 				}
 			},
 			"statistic": {
+				"scope": {
+					"application": "Application",
+					"discord": "Discord",
+					"resource": "Resource",
+					"user": "User"
+				},
 				"timespan": {
 					"minute": "Minute",
 					"hourly": "Hourly",
