@@ -7,6 +7,4 @@ public @Data class FelixIPCClient {
 
     private final IConnectionManager connectionManager;
 
-
-
 }

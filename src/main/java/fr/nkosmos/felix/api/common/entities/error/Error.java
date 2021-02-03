@@ -8,7 +8,7 @@ import lombok.Data;
  * @author xTrM_
  */
 public @Data class Error {
-	
-	private final String errorName, errorMessage, errorClass;
+    
+    private final String errorName, errorMessage, errorClass;
 
 }

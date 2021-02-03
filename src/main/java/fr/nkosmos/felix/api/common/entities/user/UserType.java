@@ -29,14 +29,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum UserType {
 
-	MEMBER("felix.api.user.type.member"),
-	SUPPORTER("felix.api.user.type.supporter"),
-	SUPPORT("felix.api.user.type.support"),
-	MOD("felix.api.user.type.moderator"),
-	MANAGER("felix.api.type.rank.manager"),
-	ADMIN("felix.api.type.rank.admin");
-	
-	/** The i18n name (for translation) */
-	private final String i18nName;
-	
+    MEMBER("felix.api.user.type.member"),
+    SUPPORTER("felix.api.user.type.supporter"),
+    SUPPORT("felix.api.user.type.support"),
+    MOD("felix.api.user.type.moderator"),
+    MANAGER("felix.api.type.rank.manager"),
+    ADMIN("felix.api.type.rank.admin");
+    
+    /** The i18n name (for translation) */
+    private final String i18nName;
+    
 }

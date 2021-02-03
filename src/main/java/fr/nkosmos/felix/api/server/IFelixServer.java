@@ -26,14 +26,14 @@ import fr.nkosmos.felix.api.server.database.IDatabaseManager;
  */
 public interface IFelixServer {
 
-	/**
-	 * Start the server
-	 */
-	void load();
-	
-	/**
-	 * @return the {@link IDatabaseManager DatabaseManager} instance
-	 */
-	IDatabaseManager getDatabase();
+    /**
+     * Start the server
+     */
+    void load();
+    
+    /**
+     * @return the {@link IDatabaseManager DatabaseManager} instance
+     */
+    IDatabaseManager getDatabase();
 
 }

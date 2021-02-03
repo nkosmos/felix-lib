@@ -24,16 +24,16 @@ package fr.nkosmos.felix.api.common.exceptions;
  */
 public class DeniedException extends FelixException {
 
-	public DeniedException(String message) {
-		super(message);
-	}
+    public DeniedException(String message) {
+        super(message);
+    }
 
-	public DeniedException(Throwable cause) {
-		super(cause);
-	}
-	
-	public DeniedException(String message, StackTraceElement[] callsite) {
-		super(message, callsite);
-	}
-	
+    public DeniedException(Throwable cause) {
+        super(cause);
+    }
+    
+    public DeniedException(String message, StackTraceElement[] callsite) {
+        super(message, callsite);
+    }
+    
 }

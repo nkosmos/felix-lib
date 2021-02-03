@@ -29,11 +29,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum AuthenticationAction {
 
-	LOGIN("felix.api.auth.action.login"),
-	LOGOUT("felix.api.auth.action.logout"),
-	REGISTER("felix.api.auth.action.register");
-	
-	/** The i18n name (used for translations) */
-	private final String i18nName;
-	
+    LOGIN("felix.api.auth.action.login"),
+    LOGOUT("felix.api.auth.action.logout"),
+    REGISTER("felix.api.auth.action.register");
+    
+    /** The i18n name (used for translations) */
+    private final String i18nName;
+    
 }

@@ -18,24 +18,24 @@ import java.util.UUID;
  */
 public @Data class Resource {
 
-	private final String name;
-	private final UUID uuid;
-	private final Category category;
-	private final Map<ResourceFlag, String> flags;
-	private final UserType[] canComment;
+    private final String name;
+    private final UUID uuid;
+    private final Category category;
+    private final Map<ResourceFlag, String> flags;
+    private final UserType[] canComment;
 
-	@Getter
-	@EqualsAndHashCode(callSuper = true)
-	@ToString
-	public static class PersonalResource extends Resource implements IPersonal {
+    @Getter
+    @EqualsAndHashCode(callSuper = true)
+    @ToString
+    public static class PersonalResource extends Resource implements IPersonal {
 
-		public PersonalResource(String name, UUID uuid, Category category, Map<ResourceFlag, String> flags, UserType[] canComment) {
-			super(name, uuid, category, flags, canComment);
-		}
+        public PersonalResource(String name, UUID uuid, Category category, Map<ResourceFlag, String> flags, UserType[] canComment) {
+            super(name, uuid, category, flags, canComment);
+        }
 
-		@Override
-		public IPersonalUpdater updater() {
-			return null;
-		}
-	}
+        @Override
+        public IPersonalUpdater updater() {
+            return null;
+        }
+    }
 }

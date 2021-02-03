@@ -26,16 +26,16 @@ import com.github.natanbc.reliqua.request.RequestException;
  */
 public class FelixException extends RequestException {
 
-	public FelixException(String message) {
-		super(message);
-	}
+    public FelixException(String message) {
+        super(message);
+    }
 
-	public FelixException(Throwable cause) {
-		super(cause);
-	}
-	
-	public FelixException(String message, StackTraceElement[] callsite) {
-		super(message, callsite);
-	}
+    public FelixException(Throwable cause) {
+        super(cause);
+    }
+    
+    public FelixException(String message, StackTraceElement[] callsite) {
+        super(message, callsite);
+    }
 
 }

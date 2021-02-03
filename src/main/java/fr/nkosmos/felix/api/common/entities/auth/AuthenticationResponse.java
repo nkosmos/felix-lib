@@ -26,7 +26,7 @@ import lombok.Data;
  */
 public @Data class AuthenticationResponse {
 
-	private final int responseOpcode;
-	private final String data;
-	
+    private final int responseOpcode;
+    private final String data;
+    
 }

@@ -27,9 +27,9 @@ import lombok.Data;
  * @author xTrM_
  */
 public @Data class DiscordUser {
-	
-	private final long discordId;
-	private final String name, discrim;
-	private final UUID linkedUserUUID;
+    
+    private final long discordId;
+    private final String name, discrim;
+    private final UUID linkedUserUUID;
 
 }

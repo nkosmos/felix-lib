@@ -11,11 +11,11 @@ import java.util.UUID;
  * @author xTrM_
  */
 public @Data class Application {
-	
-	private final String name, version;
-	private final UUID uuid;
-	private final UUID[] authors;
-	private final URL bundleURL;
-	private final boolean available;
-	
+    
+    private final String name, version;
+    private final UUID uuid;
+    private final UUID[] authors;
+    private final URL bundleURL;
+    private final boolean available;
+    
 }

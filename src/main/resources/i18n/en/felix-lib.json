@@ -1,64 +1,64 @@
 {
-	"felix": {
-		"api": {
-			"auth": {
-				"action": {
-					"login": "Login",
-					"register": "Register",
-					"logout": "Logout"
-				}
-			},
-			"marketplace": {
-				"category": {
-					"theme": "Theme",
-					"module": "Module",
-					"cosmetic": "Cosmetic",
-					"mapping": "Mapping",
-					"interface": "Interface",
-					"translation": "Translation",
-					"other": "Other"
-				},
-				"resource": {
-					"flags": {
-						"devlang": "Programming Languages",
-						"supported_languages": "Supported Languages"
-					}
-				}
-			},
-			"statistic": {
-				"scope": {
-					"application": "Application",
-					"discord": "Discord",
-					"resource": "Resource",
-					"user": "User"
-				},
-				"timespan": {
-					"minute": "Minute",
-					"hourly": "Hourly",
-					"daily": "Daily",
-					"weekly": "Weekly",
-					"monthly": "Monthly",
-					"yearly": "Yearly",
-					"forever": "Forever"
-				}
-			},
-			"user": {
-				"subscription": {
-					"type": {
-						"none": "None",
-						"premium": "Premium"
-					}
-				},
-				"type": {
-					"member": "Member",
-					"premium": "Premium",
-					"supporter": "Supporter",
-					"support": "Support",
-					"moderator": "Moderator",
-					"manager": "Manager",
-					"admin": "Administrator"
-				}
-			}
-		}
-	}
+    "felix": {
+        "api": {
+            "auth": {
+                "action": {
+                    "login": "Login",
+                    "register": "Register",
+                    "logout": "Logout"
+                }
+            },
+            "marketplace": {
+                "category": {
+                    "theme": "Theme",
+                    "module": "Module",
+                    "cosmetic": "Cosmetic",
+                    "mapping": "Mapping",
+                    "interface": "Interface",
+                    "translation": "Translation",
+                    "other": "Other"
+                },
+                "resource": {
+                    "flags": {
+                        "devlang": "Programming Languages",
+                        "supported_languages": "Supported Languages"
+                    }
+                }
+            },
+            "statistic": {
+                "scope": {
+                    "application": "Application",
+                    "discord": "Discord",
+                    "resource": "Resource",
+                    "user": "User"
+                },
+                "timespan": {
+                    "minute": "Minute",
+                    "hourly": "Hourly",
+                    "daily": "Daily",
+                    "weekly": "Weekly",
+                    "monthly": "Monthly",
+                    "yearly": "Yearly",
+                    "forever": "Forever"
+                }
+            },
+            "user": {
+                "subscription": {
+                    "type": {
+                        "none": "None",
+                        "premium": "Premium"
+                    }
+                },
+                "type": {
+                    "member": "Member",
+                    "premium": "Premium",
+                    "supporter": "Supporter",
+                    "support": "Support",
+                    "moderator": "Moderator",
+                    "manager": "Manager",
+                    "admin": "Administrator"
+                }
+            }
+        }
+    }
 }

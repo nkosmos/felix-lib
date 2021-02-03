@@ -29,10 +29,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum SubscriptionType {
 
-	NONE("felix.api.user.subscription.type.none"),
-	SUBSCRIBED("felix.api.user.subscription.type.subscribed");
-	
-	/** The i18n type (used for translations) */
-	private final String i18nDescription;
-	
+    NONE("felix.api.user.subscription.type.none"),
+    SUBSCRIBED("felix.api.user.subscription.type.subscribed");
+    
+    /** The i18n type (used for translations) */
+    private final String i18nDescription;
+    
 }

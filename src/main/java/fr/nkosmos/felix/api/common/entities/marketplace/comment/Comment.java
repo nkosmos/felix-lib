@@ -33,24 +33,24 @@ import java.util.UUID;
  */
 public @Data class Comment {
 
-	private final String content;
-	private final UUID uuid, authorUUID, resourceUUID;
+    private final String content;
+    private final UUID uuid, authorUUID, resourceUUID;
 
-	@Getter
-	@EqualsAndHashCode(callSuper = true)
-	@ToString
-	public static class PersonalComment extends Comment implements IPersonal {
-		private final IPersonalUpdater updater;
+    @Getter
+    @EqualsAndHashCode(callSuper = true)
+    @ToString
+    public static class PersonalComment extends Comment implements IPersonal {
+        private final IPersonalUpdater updater;
 
-		public PersonalComment(IPersonalUpdater updater, String content, UUID uuid, UUID authorUUID, UUID resourceUUID){
-			super(content, uuid, authorUUID, resourceUUID);
-			this.updater = updater;
-		}
+        public PersonalComment(IPersonalUpdater updater, String content, UUID uuid, UUID authorUUID, UUID resourceUUID){
+            super(content, uuid, authorUUID, resourceUUID);
+            this.updater = updater;
+        }
 
-		@Override
-		public IPersonalUpdater updater() {
-			return updater;
-		}
-	}
-	
+        @Override
+        public IPersonalUpdater updater() {
+            return updater;
+        }
+    }
+    
 }

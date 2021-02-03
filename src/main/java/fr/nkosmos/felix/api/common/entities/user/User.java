@@ -15,32 +15,32 @@ import java.util.UUID;
  * @author xTrM_
  */
 public @Data class User {
-	
-	private final String username;
-	private final UUID uuid;
-	protected final String profileName, profilePicture, profileStatus;
-	private final UserType userType;
+    
+    private final String username;
+    private final UUID uuid;
+    protected final String profileName, profilePicture, profileStatus;
+    private final UserType userType;
 
-	@Getter
-	@EqualsAndHashCode(callSuper = true)
-	@ToString
-	public static class SelfUser extends User implements IPersonal {
-		private final IPersonalUpdater updater;
-		private final String email;
+    @Getter
+    @EqualsAndHashCode(callSuper = true)
+    @ToString
+    public static class SelfUser extends User implements IPersonal {
+        private final IPersonalUpdater updater;
+        private final String email;
 
-		public SelfUser(IPersonalUpdater updater, String username, UUID uuid, String profileName, String profilePicture, String profileStatus, UserType userType, String email){
-			super(username, uuid, profileName, profilePicture, profileStatus, userType);
-			this.updater = updater;
-			this.email = email;
-		}
+        public SelfUser(IPersonalUpdater updater, String username, UUID uuid, String profileName, String profilePicture, String profileStatus, UserType userType, String email){
+            super(username, uuid, profileName, profilePicture, profileStatus, userType);
+            this.updater = updater;
+            this.email = email;
+        }
 
-		public void setProfileName(String profileName){
-			updater.update(this, "profileName", profileName);
-		}
+        public void setProfileName(String profileName){
+            updater.update(this, "profileName", profileName);
+        }
 
-		@Override
-		public IPersonalUpdater updater() {
-			return updater;
-		}
-	}
+        @Override
+        public IPersonalUpdater updater() {
+            return updater;
+        }
+    }
 }
