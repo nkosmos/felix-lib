@@ -17,25 +17,17 @@
 
 package fr.nkosmos.felix.api.common.entities.user.subscription;
 
+import lombok.Data;
+
 /**
- * Entity interface for a Rupture subscription
+ * Entity representation for an Application subscription
  * 
  * @author xTrM_
  */
-public interface ISubscriptionData {
+public @Data class SubscriptionData {
 
-	/**
-	 * @return the subscription type
-	 */
-	SubscriptionType type();
-	
-	/**
-	 * @return the purchase date
-	 */
-	long purchaseDate();
-	
-	/**
-	 * @return the expiration date
-	 */
-	long expirationDate();
+    private final SubscriptionType type;
+    private final long purchaseDate;
+    private final long expirationDate;
+
 }
