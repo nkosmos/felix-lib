@@ -1,23 +1,23 @@
 package fr.nkosmos.felix.ipc.client;
 
-import fr.nkosmos.felix.ipc.client.conn.IPCConnectionManager;
-import fr.nkosmos.felix.ipc.client.packet.PacketPipeline;
+import fr.nkosmos.felix.ipc.client.net.IPCConnectionManager;
+import fr.nkosmos.felix.ipc.client.net.IPCPipeline;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
 @Getter
-public class FelixIPCClient {
+public class IPCClient {
 
-    public static FelixIPCClient newInstance(String clientKey){
-        return new FelixIPCClient(clientKey);
+    public static IPCClient newInstance(String clientKey){
+        return new IPCClient(clientKey);
     }
 
     private final IPCConnectionManager connectionManager;
-    private final PacketPipeline pipeline;
+    private final IPCPipeline pipeline;
 
-    FelixIPCClient(String clientKey) {
+    IPCClient(String clientKey) {
         this.connectionManager = new IPCConnectionManager();
-        this.pipeline = new PacketPipeline(this, clientKey);
+        this.pipeline = new IPCPipeline(this, clientKey);
     }
 
     @SneakyThrows
