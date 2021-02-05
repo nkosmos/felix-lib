@@ -1,8 +1,8 @@
-package fr.nkosmos.felix.ipc.common.objects;
+package fr.nkosmos.felix.ipc.common.entity;
 
 import java.nio.ByteBuffer;
 
-public interface NetObject {
+public interface NetEntity {
 
     void read(ByteBuffer buffer);
 

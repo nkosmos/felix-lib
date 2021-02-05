@@ -9,11 +9,9 @@ import java.nio.ByteBuffer;
 public @Data class IPCPipeline {
 
     private final IPCClient client;
-    private final String clientKey;
 
     @SneakyThrows
-    public void identify(){
-
+    public void identify() {
         ByteBuffer bf = ByteBuffer.allocate(0x200000);
 
         byte[] arr = bf.array();
@@ -23,7 +21,7 @@ public @Data class IPCPipeline {
         byte[] bytearr = buf.array();
 
         for(byte b : bytearr){
-            if(b != 0x00){
+            if(b != 0) {
                 System.out.println(b);
             }
         }

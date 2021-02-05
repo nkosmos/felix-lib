@@ -22,8 +22,7 @@ public class EchoServer {
                     () -> {
                         try {
                             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                            BufferedReader in =
-                                    new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                             String line;
                             do {
                                 line = in.readLine();

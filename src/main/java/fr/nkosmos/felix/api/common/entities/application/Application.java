@@ -1,12 +1,12 @@
 package fr.nkosmos.felix.api.common.entities.application;
 
-import fr.nkosmos.felix.ipc.common.objects.NetObject;
+import fr.nkosmos.felix.ipc.common.entity.NetEntity;
 import fr.nkosmos.felix.ipc.common.util.BufferUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
-import java.io.BufferedReader;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.UUID;
@@ -17,7 +17,8 @@ import java.util.UUID;
  * @author xTrM_
  */
 @AllArgsConstructor
-public @Data class Application implements NetObject {
+@NoArgsConstructor
+public @Data class Application implements NetEntity {
     
     private String name, version;
     private UUID uuid;

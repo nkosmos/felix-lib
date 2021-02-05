@@ -4,9 +4,7 @@ import lombok.SneakyThrows;
 import org.scalasbt.ipcsocket.UnixDomainSocket;
 import org.scalasbt.ipcsocket.Win32NamedPipeSocket;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
@@ -20,17 +18,18 @@ public class IPCConnectionManager {
     private static final String socketName = getSocketName();
 
     private Socket socket;
-    private BufferedOutputStream outputStream;
-    private BufferedInputStream inputStream;
+    private OutputStream outputStream;
+    private InputStream inputStream;
 
     public void start() throws IOException {
         this.socket = getOrCreateConnection();
-        this.outputStream = new BufferedOutputStream(this.socket.getOutputStream());
-        this.inputStream = new BufferedInputStream(this.socket.getInputStream());
+        this.outputStream = this.socket.getOutputStream();
+        this.inputStream = this.socket.getInputStream();
     }
 
     public ByteBuffer send(byte[] arr) throws IOException {
         this.outputStream.write(arr);
+        this.outputStream.write("\n".getBytes());
         this.outputStream.flush();
 
         byte[] bytearr = new byte[0x200000];
