@@ -10,14 +10,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
 public class ServerTest {
 
     static final boolean isWin = System.getProperty("os.name", "").toLowerCase().startsWith("win");
 
     public static void main(String[] args) throws IOException {
-        EchoServer server = new EchoServer(newServerSocket(getSocketName()));
+        SimpleServer server = new SimpleServer(newServerSocket(getSocketName()));
         server.run();
     }
 

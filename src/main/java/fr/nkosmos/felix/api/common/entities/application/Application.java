@@ -1,6 +1,6 @@
 package fr.nkosmos.felix.api.common.entities.application;
 
-import fr.nkosmos.felix.ipc.common.entity.NetEntity;
+import fr.nkosmos.felix.ipc.common.entity.ISerializable;
 import fr.nkosmos.felix.ipc.common.util.BufferUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,13 +18,12 @@ import java.util.UUID;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public @Data class Application implements NetEntity {
+public @Data class Application implements ISerializable {
     
     private String name, version;
     private UUID uuid;
     private UUID[] authors;
     private URL bundleURL;
-    private boolean available;
 
     @SneakyThrows
     @Override
@@ -40,7 +39,6 @@ public @Data class Application implements NetEntity {
         }
 
         this.bundleURL = new URL(BufferUtil.readString(buffer));
-        this.available = buffer.get() != 0;
     }
 
     @Override
@@ -55,6 +53,5 @@ public @Data class Application implements NetEntity {
         }
 
         BufferUtil.writeString(buffer, bundleURL.toString());
-        buffer.put(this.available ? (byte)1 : (byte)0);
     }
 }

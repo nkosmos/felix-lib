@@ -27,19 +27,19 @@ public class IPCConnectionManager {
         this.inputStream = this.socket.getInputStream();
     }
 
-    public ByteBuffer send(byte[] arr) throws IOException {
-        this.outputStream.write(arr);
+    public ByteBuffer send(ByteBuffer buf) throws IOException {
+        this.outputStream.write(buf.array());
         this.outputStream.write("\n".getBytes());
         this.outputStream.flush();
 
-        byte[] bytearr = new byte[0x200000];
-        this.inputStream.read(bytearr, 0, 0);
+        byte[] bytearr = new byte[0x8000];
+        this.inputStream.read(bytearr);
 
         return ByteBuffer.wrap(bytearr);
     }
 
     public void shutdown() throws IOException {
-        socket.close();
+        this.socket.close();
     }
 
     private Socket getOrCreateConnection() throws IOException {
