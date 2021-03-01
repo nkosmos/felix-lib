@@ -1,4 +1,4 @@
-package me.xtrm.felix.ipc;
+package me.xtrm.felix.ipc.server;
 
 import org.scalasbt.ipcsocket.UnixDomainServerSocket;
 import org.scalasbt.ipcsocket.Win32NamedPipeServerSocket;

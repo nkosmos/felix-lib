@@ -1,4 +1,4 @@
-package fr.nkosmos.felix.ipc.common.entity;
+package fr.nkosmos.felix.ipc.common.net;
 
 import java.nio.ByteBuffer;
 

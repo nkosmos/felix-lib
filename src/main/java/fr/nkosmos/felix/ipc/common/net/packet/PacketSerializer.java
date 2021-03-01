@@ -1,15 +1,15 @@
-package fr.nkosmos.felix.ipc.common.entity.packet;
+package fr.nkosmos.felix.ipc.common.net.packet;
 
-import fr.nkosmos.felix.ipc.common.entity.ISerializable;
+import fr.nkosmos.felix.ipc.common.net.ISerializable;
 import fr.nkosmos.felix.ipc.common.util.BufferUtil;
 import lombok.SneakyThrows;
 
 import java.nio.ByteBuffer;
 
-public class PacketSerializer {
+public final class PacketSerializer {
 
     @SneakyThrows
-    public <T extends ISerializable> T read(ByteBuffer buffer){
+    public final <T extends ISerializable> T read(ByteBuffer buffer){
         int len = buffer.getInt();
         if(len == -1) return null;
 
@@ -17,13 +17,15 @@ public class PacketSerializer {
         buffer.get(stringBytes);
         String cla$$ = new String(stringBytes);
 
+        System.out.println("[Serializer] Read " + cla$$);
+
         Class<T> clazz = (Class<T>) Class.forName(cla$$, false, getClass().getClassLoader());
         T instance = clazz.getConstructor().newInstance();
         instance.read(buffer);
         return instance;
     }
 
-    public <T extends ISerializable> ByteBuffer write(T packet){
+    public final <T extends ISerializable> ByteBuffer write(T packet){
         ByteBuffer buffer = ByteBuffer.allocate(0x8000);
 
         if(packet == null){
@@ -31,8 +33,11 @@ public class PacketSerializer {
             return buffer;
         }
 
-        String className = packet.getClass().getName();
-        BufferUtil.writeString(buffer, className);
+        String cla$$ = packet.getClass().getName();
+
+        System.out.println("[Serializer] Wrote " + cla$$);
+
+        BufferUtil.writeString(buffer, cla$$);
         packet.write(buffer);
         return buffer;
     }

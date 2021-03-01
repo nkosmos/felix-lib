@@ -1,24 +1,26 @@
 package fr.nkosmos.felix.ipc.client.net;
 
 import fr.nkosmos.felix.ipc.client.IPCClient;
-import fr.nkosmos.felix.ipc.common.entity.ISerializable;
-import fr.nkosmos.felix.ipc.common.entity.packet.IPacketHandler;
-import fr.nkosmos.felix.ipc.common.entity.packet.PacketSerializer;
-import fr.nkosmos.felix.ipc.common.entity.packet.impl.PacketHeartbeat;
+import fr.nkosmos.felix.ipc.common.net.IPipeline;
+import fr.nkosmos.felix.ipc.common.net.ISerializable;
+import fr.nkosmos.felix.ipc.common.net.packet.PacketProcessor;
+import fr.nkosmos.felix.ipc.common.net.packet.PacketSerializer;
+import fr.nkosmos.felix.ipc.common.net.packet.impl.PacketHeartbeat;
 import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.Queue;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.stream.Collectors;
 
-public @Data class IPCPipeline {
+public final @Data class ClientPipeline implements IPipeline {
 
     private final IPCClient client;
-    private final PacketSerializer serializer = new PacketSerializer();
 
-    private final Map<IPacketHandler<? extends ISerializable, ? extends ISerializable>, Class<? extends ISerializable>> handlerList = new HashMap<>();
+    private final PacketSerializer serializer = new PacketSerializer();
+    private final PacketProcessor processor = new PacketProcessor(this, false);
+
     private final Queue<ISerializable> packetQueue = new ConcurrentLinkedQueue<>();
 
     public void start() {
@@ -50,7 +52,7 @@ public @Data class IPCPipeline {
     }
 
     @SneakyThrows
-    public <T extends ISerializable, K extends ISerializable> void queuePacket(T packet) {
+    public <T extends ISerializable> void queuePacket(T packet) {
         packetQueue.add(packet);
     }
 
@@ -63,16 +65,6 @@ public @Data class IPCPipeline {
         ISerializable recievedPacket = serializer.read(recieved);
         if(recievedPacket == null) return;
 
-        List<IPacketHandler> list = handlerList.keySet().stream().filter(k -> handlerList.get(k).equals(recievedPacket.getClass())).collect(Collectors.toList());
-        list.forEach(h -> {
-            ISerializable newPacket = h.handleClient(recievedPacket);
-            if(newPacket != null){
-                queuePacket(newPacket);
-            }
-        });
-    }
-
-    public <T extends ISerializable, K extends ISerializable> void registerHandler(IPacketHandler<T, K> handler, Class<T> clazz){
-        this.handlerList.put(handler, clazz);
+        processor.handle(recievedPacket);
     }
 }

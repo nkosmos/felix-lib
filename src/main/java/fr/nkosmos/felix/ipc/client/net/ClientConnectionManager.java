@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class IPCConnectionManager {
+public class ClientConnectionManager {
 
     private static final boolean isWin = System.getProperty("os.name", "").toLowerCase().startsWith("win");
     private static final String socketName = getSocketName();

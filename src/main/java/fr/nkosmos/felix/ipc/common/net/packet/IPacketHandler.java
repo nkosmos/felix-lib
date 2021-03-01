@@ -1,6 +1,6 @@
-package fr.nkosmos.felix.ipc.common.entity.packet;
+package fr.nkosmos.felix.ipc.common.net.packet;
 
-import fr.nkosmos.felix.ipc.common.entity.ISerializable;
+import fr.nkosmos.felix.ipc.common.net.ISerializable;
 
 public interface IPacketHandler<T extends ISerializable, K extends ISerializable> {
 

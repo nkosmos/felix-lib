@@ -1,6 +1,6 @@
-package fr.nkosmos.felix.ipc.common.entity.packet.impl;
+package fr.nkosmos.felix.ipc.common.net.packet.impl;
 
-import fr.nkosmos.felix.ipc.common.entity.ISerializable;
+import fr.nkosmos.felix.ipc.common.net.ISerializable;
 import fr.nkosmos.felix.ipc.common.util.BufferUtil;
 import lombok.AllArgsConstructor;
 

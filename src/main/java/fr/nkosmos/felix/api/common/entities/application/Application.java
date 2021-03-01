@@ -1,6 +1,6 @@
 package fr.nkosmos.felix.api.common.entities.application;
 
-import fr.nkosmos.felix.ipc.common.entity.ISerializable;
+import fr.nkosmos.felix.ipc.common.net.ISerializable;
 import fr.nkosmos.felix.ipc.common.util.BufferUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +23,7 @@ public @Data class Application implements ISerializable {
     private String name, version;
     private UUID uuid;
     private UUID[] authors;
-    private URL bundleURL;
+    private URL data;
 
     @SneakyThrows
     @Override
@@ -38,7 +38,7 @@ public @Data class Application implements ISerializable {
             this.authors[i] = UUID.fromString(BufferUtil.readString(buffer));
         }
 
-        this.bundleURL = new URL(BufferUtil.readString(buffer));
+        this.data = new URL(BufferUtil.readString(buffer));
     }
 
     @Override
@@ -52,6 +52,8 @@ public @Data class Application implements ISerializable {
             BufferUtil.writeString(buffer, uuid.toString());
         }
 
-        BufferUtil.writeString(buffer, bundleURL.toString());
+        BufferUtil.writeString(buffer, data.toString());
     }
+
+    public static class LocalApplication extends Application {}
 }
