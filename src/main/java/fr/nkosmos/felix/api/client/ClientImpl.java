@@ -10,7 +10,8 @@ import fr.nkosmos.felix.api.common.entities.application.Application;
 import fr.nkosmos.felix.api.common.entities.auth.AuthenticationResponse;
 import fr.nkosmos.felix.api.common.entities.marketplace.Resource;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.Comment;
-import fr.nkosmos.felix.api.common.entities.user.User;
+import fr.nkosmos.felix.api.common.entities.user.impl.PublicUser;
+import fr.nkosmos.felix.api.common.entities.user.impl.SelfUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import okhttp3.OkHttpClient;
@@ -43,13 +44,13 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
     }
 
     @Override
-    public PendingRequest<User> requestUser(UUID userId) {
+    public PendingRequest<PublicUser> requestUser(UUID userId) {
         requiresAuthorization();
         return null;
     }
 
     @Override
-    public PendingRequest<User.SelfUser> requestSelfUser() {
+    public PendingRequest<SelfUser> requestSelfUser() {
         requiresAuthorization();
         return null;
     }

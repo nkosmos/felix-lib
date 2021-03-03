@@ -5,7 +5,8 @@ import fr.nkosmos.felix.api.common.entities.application.Application;
 import fr.nkosmos.felix.api.common.entities.auth.AuthenticationResponse;
 import fr.nkosmos.felix.api.common.entities.marketplace.Resource;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.Comment;
-import fr.nkosmos.felix.api.common.entities.user.User;
+import fr.nkosmos.felix.api.common.entities.user.impl.PublicUser;
+import fr.nkosmos.felix.api.common.entities.user.impl.SelfUser;
 
 import java.util.Set;
 import java.util.UUID;
@@ -31,15 +32,15 @@ public interface IClientWrapper {
      * Builds a request to get a User from a {@link UUID}
      * @param userId
      *         the user's uuid
-     * @return a {@link PendingRequest} for the {@link User} with that uuid
+     * @return a {@link PendingRequest} for the {@link PublicUser} with that uuid
      */
-    PendingRequest<User> requestUser(UUID userId);
+    PendingRequest<PublicUser> requestUser(UUID userId);
 
     /**
      * Builds a request to get a PersonalUser
-     * @return a {@link PendingRequest} for the {@link User.SelfUser} with that token
+     * @return a {@link PendingRequest} for the {@link SelfUser} with that token
      */
-    PendingRequest<User.SelfUser> requestSelfUser();
+    PendingRequest<SelfUser> requestSelfUser();
     
     /**
      * Builds a request to get a Resource from a {@link UUID}
