@@ -35,7 +35,7 @@ public class SimpleServer {
             OutputStream outputStream = clientSocket.getOutputStream();
             InputStream inputStream = clientSocket.getInputStream();
 
-            byte[] payload = new byte[0x8000];
+            byte[] payload = new byte[0x480000];
 
             IPipeline pipeline = new IPipeline() {
                 @Override

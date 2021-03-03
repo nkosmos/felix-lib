@@ -57,7 +57,7 @@ public final @Data class ClientPipeline implements IPipeline {
     }
 
     @SneakyThrows
-    private <T extends ISerializable, K extends ISerializable> void sendPacket(T packet){
+    private <T extends ISerializable> void sendPacket(T packet){
         ByteBuffer buffer = serializer.write(packet);
 
         ByteBuffer recieved = client.getConnectionManager().send(buffer);

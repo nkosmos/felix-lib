@@ -32,7 +32,7 @@ public class ClientConnectionManager {
         this.outputStream.write("\n".getBytes());
         this.outputStream.flush();
 
-        byte[] bytearr = new byte[0x8000];
+        byte[] bytearr = new byte[0x480000];
         this.inputStream.read(bytearr);
 
         return ByteBuffer.wrap(bytearr);
