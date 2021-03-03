@@ -30,7 +30,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
     private static final String API_BASE = "https://nkosmos.fr/api/v2";
     
     private final String userAgent;
-    private String apiKey, authToken;
+    private String authorizationToken;
 
     public ClientImpl(OkHttpClient client, RateLimiterFactory factory, boolean trackCallSites, String userAgent) {
         super(client, factory, trackCallSites);
@@ -44,22 +44,22 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
 
     @Override
     public PendingRequest<User> requestUser(UUID userId) {
-        requiresApiKey();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<User.SelfUser> requestSelfUser() {
-        requiresToken();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Resource> requestResource(UUID uuid) {
-        requiresApiKey();
+        requiresAuthorization();
         return createRequest(
                     newRequestBuilder(Route.Defaults.Marketplace.GET_RESOURCE.compile(uuid.toString()).getURL(API_BASE))
-                    .header("Authorization", "API " + apiKey)
+                    .header("Authorization", authorizationToken)
                     .get()
                 )
                 .setRateLimiter(getRateLimiter("/marketplace"))
@@ -69,64 +69,61 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
 
     @Override
     public PendingRequest<Set<Resource>> requestResources(UUID userId) {
-        requiresApiKey();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Resource.PersonalResource> requestPersonalResource(UUID uuid) {
-        requiresToken();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Set<Resource.PersonalResource>> requestPersonalResources() {
-        requiresToken();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Comment> requestComment(UUID uuid) {
-        requiresApiKey();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Set<Comment>> requestComments(UUID userId) {
-        requiresApiKey();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Comment.PersonalComment> requestPersonalComment(UUID uuid) {
-        requiresToken();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Set<Comment.PersonalComment>> requestPersonalComments() {
-        requiresToken();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Set<Application>> requestApplications() {
-        requiresApiKey();
+        requiresAuthorization();
         return null;
     }
 
     @Override
     public PendingRequest<Application> requestApplication(UUID uuid) {
-        requiresApiKey();
+        requiresAuthorization();
         return null;
     }
     
-    private void requiresApiKey() {
-        if(apiKey == null || apiKey.isEmpty()) throw new IllegalStateException("This endpoint requires an API key.");
-    }
-    
-    private void requiresToken() {
-        if(authToken == null || authToken.isEmpty()) throw new IllegalStateException("This endpoint requires an Authentication token.");
+    private void requiresAuthorization() {
+        if(authorizationToken == null || authorizationToken.isEmpty())
+            throw new IllegalStateException("This endpoint requires an authorization token.");
     }
     
     @CheckReturnValue

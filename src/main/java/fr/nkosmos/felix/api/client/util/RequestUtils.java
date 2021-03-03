@@ -19,7 +19,6 @@ import java.util.zip.InflaterInputStream;
 /**
  * See <a href="https://github.com/Nekos-life/Nekos4J/blob/master/src/main/java/pw/aru/api/nekos4j/util/RequestUtils.java">Nekos-life/Nekos4J</a>
  */
-@SuppressWarnings("unchecked")
 public class RequestUtils {
     
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

@@ -14,6 +14,7 @@ public enum UserType {
 
     MEMBER("felix.api.user.type.member"),
     SUPPORTER("felix.api.user.type.supporter"),
+    DEVELOPER("felix.api.user.type.developer"),
     SUPPORT("felix.api.user.type.support"),
     MOD("felix.api.user.type.moderator"),
     MANAGER("felix.api.type.rank.manager"),
