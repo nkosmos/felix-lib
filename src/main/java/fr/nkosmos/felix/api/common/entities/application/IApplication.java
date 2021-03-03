@@ -1,6 +1,5 @@
 package fr.nkosmos.felix.api.common.entities.application;
 
-import java.net.URL;
 import java.util.UUID;
 
 public interface IApplication {
@@ -16,8 +15,6 @@ public interface IApplication {
     String getIcon();
 
     String getDescription();
-
-    URL getDataUrl();
 
     boolean isAvailable();
 

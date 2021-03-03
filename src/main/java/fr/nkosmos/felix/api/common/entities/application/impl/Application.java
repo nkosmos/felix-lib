@@ -23,7 +23,6 @@ public @Data class Application implements IApplication {
     private String version;
     private UUID authorId;
     private String icon, description;
-    private URL dataUrl;
     private boolean available;
     @Accessors(fluent = true) private boolean requiresSubscription;
     private UUID pricingId;
