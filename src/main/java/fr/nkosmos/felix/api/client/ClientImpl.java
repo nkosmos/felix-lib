@@ -6,7 +6,7 @@ import com.github.natanbc.reliqua.request.PendingRequest;
 import com.github.natanbc.reliqua.util.StatusCodeValidator;
 import fr.nkosmos.felix.api.client.request.Route;
 import fr.nkosmos.felix.api.client.util.RequestUtils;
-import fr.nkosmos.felix.api.common.entities.application.Application;
+import fr.nkosmos.felix.api.common.entities.application.impl.Application;
 import fr.nkosmos.felix.api.common.entities.auth.AuthenticationResponse;
 import fr.nkosmos.felix.api.common.entities.marketplace.Resource;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.Comment;
