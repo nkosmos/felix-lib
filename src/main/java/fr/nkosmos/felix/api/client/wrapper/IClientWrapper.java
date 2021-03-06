@@ -28,6 +28,18 @@ public interface IClientWrapper {
      * @return a {@link PendingRequest} for the {@link AuthenticationResponse}
      */
     PendingRequest<AuthenticationResponse> requestAuthentication(String identifier, String authentifier);
+
+    /**
+     * Builds a request
+     * @param name
+     *         the user's name
+     * @param email
+     *         the user's email
+     * @param authentifier
+     *         the user's authentifier (password)
+     * @return a {@link PendingRequest} for the {@link AuthenticationResponse}
+     */
+    PendingRequest<AuthenticationResponse> requestRegistration(String name, String email, String authentifier);
     
     /**
      * Builds a request to get a User from a {@link UUID}

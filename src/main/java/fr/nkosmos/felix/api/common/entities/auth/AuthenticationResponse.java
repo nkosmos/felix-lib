@@ -9,7 +9,7 @@ import lombok.Data;
  */
 public @Data class AuthenticationResponse {
 
-    private final int responseOpcode;
-    private final String data;
+    private final String responseMessage;
+    private final String responseData;
     
 }

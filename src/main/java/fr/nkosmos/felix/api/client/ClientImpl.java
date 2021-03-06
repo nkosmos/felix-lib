@@ -42,7 +42,24 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
 
     @Override
     public PendingRequest<AuthenticationResponse> requestAuthentication(String identifier, String authentifier) {
-        return null;
+        return createRequest(
+                newRequestBuilder(Route.Defaults.Authentication.LOGIN.compile().getURL(apiBase))
+                    .get()
+                )
+                .setRateLimiter(getRateLimiter("/auth"))
+                .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
+                .build(response -> RequestUtils.toJson(response, AuthenticationResponse.class), RequestUtils::handleError);
+    }
+
+    @Override
+    public PendingRequest<AuthenticationResponse> requestRegistration(String name, String email, String authentifier) {
+        return createRequest(
+                newRequestBuilder(Route.Defaults.Authentication.REGISTER.compile().getURL(apiBase))
+                        .get()
+                )
+                .setRateLimiter(getRateLimiter("/auth"))
+                .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
+                .build(response -> RequestUtils.toJson(response, AuthenticationResponse.class), RequestUtils::handleError);
     }
 
     @Override
@@ -126,6 +143,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
 
     @Override
     public PendingRequest<DiscordUser> linkAccount(String oauth2Code) {
+        requiresAuthorization();
         return createRequest(
                 newRequestBuilder(Route.Defaults.Discord.LINK_ACCOUNT.compile(oauth2Code).getURL(apiBase))
                     .header("Authorization", authorizationToken)
