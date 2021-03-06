@@ -51,7 +51,7 @@ public interface IClientWrapper {
 
     /**
      * Builds a request to get a PersonalUser
-     * @return a {@link PendingRequest} for the {@link SelfUser} with that token
+     * @return a {@link PendingRequest} for the {@link SelfUser}
      */
     PendingRequest<SelfUser> requestSelfUser();
     
@@ -75,7 +75,7 @@ public interface IClientWrapper {
      * Builds a request to get a PersonalResource from a private token
      * @param uuid
      *         the resource's uuid
-     * @return a {@link PendingRequest} for the {@link Resource.PersonalResource} with that token
+     * @return a {@link PendingRequest} for the {@link Resource.PersonalResource} with that uuid
      */
     PendingRequest<Resource.PersonalResource> requestPersonalResource(UUID uuid);
     
