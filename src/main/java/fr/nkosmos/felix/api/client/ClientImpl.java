@@ -8,6 +8,7 @@ import fr.nkosmos.felix.api.client.request.Route;
 import fr.nkosmos.felix.api.client.util.RequestUtils;
 import fr.nkosmos.felix.api.common.entities.application.impl.Application;
 import fr.nkosmos.felix.api.common.entities.auth.AuthenticationResponse;
+import fr.nkosmos.felix.api.common.entities.discord.DiscordUser;
 import fr.nkosmos.felix.api.common.entities.marketplace.Resource;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.Comment;
 import fr.nkosmos.felix.api.common.entities.user.impl.PublicUser;
@@ -28,13 +29,14 @@ import java.util.UUID;
 public @Data class ClientImpl extends Reliqua implements FelixClient {
 
     private static final Logger LOGGER = LogManager.getLogger("FelixClient");
-    private static final String API_BASE = "https://nkosmos.fr/api/v2";
+    private final String apiBase;
     
     private final String userAgent;
     private String authorizationToken;
 
-    public ClientImpl(OkHttpClient client, RateLimiterFactory factory, boolean trackCallSites, String userAgent) {
+    public ClientImpl(String url, OkHttpClient client, RateLimiterFactory factory, boolean trackCallSites, String userAgent) {
         super(client, factory, trackCallSites);
+        this.apiBase = url;
         this.userAgent = userAgent;
     }
 
@@ -59,7 +61,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
     public PendingRequest<Resource> requestResource(UUID uuid) {
         requiresAuthorization();
         return createRequest(
-                    newRequestBuilder(Route.Defaults.Marketplace.GET_RESOURCE.compile(uuid.toString()).getURL(API_BASE))
+                newRequestBuilder(Route.Defaults.Marketplace.GET_RESOURCE.compile(uuid.toString()).getURL(apiBase))
                     .header("Authorization", authorizationToken)
                     .get()
                 )
@@ -121,10 +123,23 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         requiresAuthorization();
         return null;
     }
-    
+
+    @Override
+    public PendingRequest<DiscordUser> linkAccount(String oauth2Code) {
+        return createRequest(
+                newRequestBuilder(Route.Defaults.Discord.LINK_ACCOUNT.compile(oauth2Code).getURL(apiBase))
+                    .header("Authorization", authorizationToken)
+                    .get()
+                )
+                .setRateLimiter(getRateLimiter("/discord"))
+                .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
+                .build(response -> RequestUtils.toJson(response, DiscordUser.class), RequestUtils::handleError);
+    }
+
     private void requiresAuthorization() {
-        if(authorizationToken == null || authorizationToken.isEmpty())
+        if(authorizationToken == null || authorizationToken.isEmpty()) {
             throw new IllegalStateException("This endpoint requires an authorization token.");
+        }
     }
     
     @CheckReturnValue

@@ -3,6 +3,7 @@ package fr.nkosmos.felix.api.client.wrapper;
 import com.github.natanbc.reliqua.request.PendingRequest;
 import fr.nkosmos.felix.api.common.entities.application.impl.Application;
 import fr.nkosmos.felix.api.common.entities.auth.AuthenticationResponse;
+import fr.nkosmos.felix.api.common.entities.discord.DiscordUser;
 import fr.nkosmos.felix.api.common.entities.marketplace.Resource;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.Comment;
 import fr.nkosmos.felix.api.common.entities.user.impl.PublicUser;
@@ -17,7 +18,7 @@ import java.util.UUID;
  * @author xTrM_
  */
 public interface IClientWrapper {
-    
+
     /**
      * Builds a request
      * @param identifier
@@ -115,5 +116,13 @@ public interface IClientWrapper {
      * @return a {@link PendingRequest} for the {@link Application} with that uuid
      */
     PendingRequest<Application> requestApplication(UUID uuid);
+
+    /**
+     * Builds a request to link your Discord account from a oauth2 code
+     * @param oauth2Code
+     *         the oauth2 code
+     * @return a {@link DiscordUser} instance
+     */
+    PendingRequest<DiscordUser> linkAccount(String oauth2Code);
 
 }

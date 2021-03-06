@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 public interface FelixClient extends IClientWrapper {
 
     class Builder {
+        private String url;
         private OkHttpClient client;
         private RateLimiterFactory rateLimiterFactory;
         private boolean trackCallSites;
@@ -24,11 +25,19 @@ public interface FelixClient extends IClientWrapper {
         @Nonnull
         public FelixClient build() {
             return new ClientImpl(
-                client == null ? new OkHttpClient() : client,
-                rateLimiterFactory,
-                trackCallSites,
-                String.format("felix-api v%s", "@VERSION@")
+                    url,
+                    client == null ? new OkHttpClient() : client,
+                    rateLimiterFactory,
+                    trackCallSites,
+                    String.format("felix-client v%s", "indev") //TODO change this
             );
+        }
+
+        @CheckReturnValue
+        @Nonnull
+        public Builder setUrl(String url) {
+            this.url = url;
+            return this;
         }
 
         @CheckReturnValue

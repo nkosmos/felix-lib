@@ -46,6 +46,7 @@ public @Data class Route {
         
         public static class Discord {
             public static final Route USER_INFO = new Route(GET, "/discord/users/%s");
+            public static final Route LINK_ACCOUNT = new Route(GET, "/discord/link");
         }
         
         public static class Statistics {
