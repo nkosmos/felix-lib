@@ -54,7 +54,13 @@ public interface IClientWrapper {
      * @return a {@link PendingRequest} for the {@link SelfUser}
      */
     PendingRequest<SelfUser> requestSelfUser();
-    
+
+    /**
+     * Builds a request to get all available Resources
+     * @return a {@link PendingRequest} for a {@link Set} containing all the available {@link Resource}s
+     */
+    PendingRequest<Set<Resource>> requestResources();
+
     /**
      * Builds a request to get a Resource from a {@link UUID}
      * @param uuid
@@ -70,7 +76,13 @@ public interface IClientWrapper {
      * @return a {@link PendingRequest} for a {@link Set} containing all the user's {@link Resource}s
      */
     PendingRequest<Set<Resource>> requestResources(UUID userId);
-    
+
+    /**
+     * Builds a request to get all PersonalResources
+     * @return a {@link PendingRequest} for a {@link Set} containing all the user's {@link Resource.PersonalResource}s
+     */
+    PendingRequest<Set<Resource.PersonalResource>> requestPersonalResources();
+
     /**
      * Builds a request to get a PersonalResource from a private token
      * @param uuid
@@ -78,12 +90,20 @@ public interface IClientWrapper {
      * @return a {@link PendingRequest} for the {@link Resource.PersonalResource} with that uuid
      */
     PendingRequest<Resource.PersonalResource> requestPersonalResource(UUID uuid);
-    
+
     /**
-     * Builds a request to get all PersonalResources
-     * @return a {@link PendingRequest} for a {@link Set} containing all the user's {@link Resource.PersonalResource}s
+     * Builds a request to get all Applications
+     * @return a {@link PendingRequest} for a {@link Set} containing all the available {@link Application}s
      */
-    PendingRequest<Set<Resource.PersonalResource>> requestPersonalResources();
+    PendingRequest<Set<Application>> requestApplications();
+
+    /**
+     * Builds a request to get an Application from a {@link UUID}
+     * @param uuid
+     *         the application's uuid
+     * @return a {@link PendingRequest} for the {@link Application} with that uuid
+     */
+    PendingRequest<Application> requestApplication(UUID uuid);
 
     /**
      * Builds a request to get a Comment from its UUID
@@ -114,20 +134,6 @@ public interface IClientWrapper {
      * @return a {@link PendingRequest} for a {@link Set} containing all the user's {@link Comment.PersonalComment PersonalComments}
      */
     PendingRequest<Set<Comment.PersonalComment>> requestPersonalComments();
-    
-    /**
-     * Builds a request to get all Applications
-     * @return a {@link PendingRequest} for a {@link Set} containing all the {@link Application Applications}
-     */
-    PendingRequest<Set<Application>> requestApplications();
-    
-    /**
-     * Builds a request to get an Application from a {@link UUID}
-     * @param uuid
-     *         the application's uuid
-     * @return a {@link PendingRequest} for the {@link Application} with that uuid
-     */
-    PendingRequest<Application> requestApplication(UUID uuid);
 
     /**
      * Builds a request to link your Discord account from a oauth2 code
