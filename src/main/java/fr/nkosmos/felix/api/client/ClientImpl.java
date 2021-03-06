@@ -61,7 +61,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
     public PendingRequest<Resource> requestResource(UUID uuid) {
         requiresAuthorization();
         return createRequest(
-                newRequestBuilder(Route.Defaults.Marketplace.GET_RESOURCE.compile(uuid.toString()).getURL(apiBase))
+                newRequestBuilder(Route.Defaults.Marketplace.GET_RESOURCE_INFO.compile(uuid.toString()).getURL(apiBase))
                     .header("Authorization", authorizationToken)
                     .get()
                 )
