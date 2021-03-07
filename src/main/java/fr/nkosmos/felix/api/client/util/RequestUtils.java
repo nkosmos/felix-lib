@@ -5,6 +5,7 @@ import com.github.natanbc.reliqua.request.RequestException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fr.nkosmos.felix.api.common.exceptions.FelixException;
+import lombok.SneakyThrows;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -44,6 +45,7 @@ public class RequestUtils {
         return body.byteStream();
     }
     
+    @SneakyThrows
     public static <T> void handleError(RequestContext<T> context) {
         Response response = context.getResponse();
         ResponseBody body = response.body();
@@ -51,6 +53,7 @@ public class RequestUtils {
             context.getErrorConsumer().accept(new RequestException("Unexpected status code " + response.code() + " (No body)", context.getCallStack()));
             return;
         }
+        System.out.println("body: " + body.string());
         Map<String, Object> jsonData = new HashMap<>(toJson(response, Map.class));
         handleErrorCode(jsonData, context);
     }

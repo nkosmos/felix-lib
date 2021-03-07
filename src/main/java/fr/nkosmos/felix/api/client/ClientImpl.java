@@ -56,7 +56,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         )
                 .setRateLimiter(getRateLimiter("/auth"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, AuthenticationResponse.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, AuthenticationResponse.class), HANDLER);
     }
 
     @Override
