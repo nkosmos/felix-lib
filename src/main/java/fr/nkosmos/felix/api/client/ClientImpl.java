@@ -3,6 +3,7 @@ package fr.nkosmos.felix.api.client;
 import com.github.natanbc.reliqua.Reliqua;
 import com.github.natanbc.reliqua.limiter.factory.RateLimiterFactory;
 import com.github.natanbc.reliqua.request.PendingRequest;
+import com.github.natanbc.reliqua.util.ErrorHandler;
 import com.github.natanbc.reliqua.util.StatusCodeValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,25 +18,21 @@ import fr.nkosmos.felix.api.common.entities.user.impl.PublicUser;
 import fr.nkosmos.felix.api.common.entities.user.impl.SelfUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
+import okhttp3.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @EqualsAndHashCode(callSuper = false)
 public @Data class ClientImpl extends Reliqua implements FelixClient {
 
     private static final Logger LOGGER = LogManager.getLogger("FelixClient");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+
+    private static final ErrorHandler HANDLER = RequestUtils::handleError;
 
     private final String apiBase;
     private final String userAgent;
@@ -75,19 +72,21 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         )
                 .setRateLimiter(getRateLimiter("/auth"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, AuthenticationResponse.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, AuthenticationResponse.class), HANDLER);
     }
 
     @Override
     public PendingRequest<PublicUser> requestUser(UUID userId) {
         requiresAuthorization();
+
         return createRequest(
                 newRequestBuilder(Route.Defaults.User.GET_USER.compile(userId.toString()).getURL(apiBase))
+                        .header("Authorization", authorizationToken)
                         .get()
         )
                 .setRateLimiter(getRateLimiter("/users"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, PublicUser.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, PublicUser.class), HANDLER);
     }
 
     @Override
@@ -95,24 +94,25 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         requiresAuthorization();
         return createRequest(
                 newRequestBuilder(Route.Defaults.Self.GET_SELF.compile().getURL(apiBase))
+                        .header("Authorization", authorizationToken)
                         .get()
         )
-                .setRateLimiter(getRateLimiter("/users"))
+                .setRateLimiter(getRateLimiter("/self"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, SelfUser.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, SelfUser.class), HANDLER);
     }
 
     @Override
     public PendingRequest<Set<Resource>> requestResources() {
         requiresAuthorization();
         return createRequest(
-                newRequestBuilder(Route.Defaults.Marketplace.GET_RESOURCE_INFO.compile().getURL(apiBase))
+                newRequestBuilder(Route.Defaults.Marketplace.LIST_RESOURCES.compile().getURL(apiBase))
                         .header("Authorization", authorizationToken)
                         .get()
         )
                 .setRateLimiter(getRateLimiter("/marketplace"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, Set.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, Set.class), HANDLER);
     }
 
     @Override
@@ -125,13 +125,25 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         )
                 .setRateLimiter(getRateLimiter("/marketplace"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, Resource.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, Resource.class), HANDLER);
     }
 
     @Override
     public PendingRequest<Set<Resource>> requestResources(UUID userId) {
         requiresAuthorization();
-        return null;
+
+        String url = Route.Defaults.Marketplace.LIST_RESOURCES.compile(userId.toString()).getURL(apiBase);
+        HttpUrl.Builder httpBuilder = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder();
+        httpBuilder.addQueryParameter("uuid", userId.toString());
+
+        return createRequest(
+                newRequestBuilder(httpBuilder.build().url().toString())
+                        .header("Authorization", authorizationToken)
+                        .get()
+        )
+                .setRateLimiter(getRateLimiter("/marketplace"))
+                .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
+                .build(response -> RequestUtils.toJson(response, Set.class), HANDLER);
     }
 
     @Override
@@ -192,7 +204,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         )
                 .setRateLimiter(getRateLimiter("/discord"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, DiscordUser.class), RequestUtils::handleError);
+                .build(response -> RequestUtils.toJson(response, DiscordUser.class), HANDLER);
     }
 
     private void requiresAuthorization() {
