@@ -12,7 +12,7 @@ import java.util.UUID;
  *
  * @author xTrM_
  */
-public @Data class PublicUser implements IUser {
+public @Data class User implements IUser {
 
     private final String username, displayName;
     private final UserStatus status;

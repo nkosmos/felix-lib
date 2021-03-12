@@ -1,4 +1,4 @@
-package fr.nkosmos.felix.api.common.entities.user.subscription;
+package fr.nkosmos.felix.api.common.entities.subscription;
 
 import lombok.Data;
 

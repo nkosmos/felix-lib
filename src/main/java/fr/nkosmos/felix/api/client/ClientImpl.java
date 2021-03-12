@@ -12,10 +12,11 @@ import fr.nkosmos.felix.api.client.util.RequestUtils;
 import fr.nkosmos.felix.api.common.entities.application.impl.Application;
 import fr.nkosmos.felix.api.common.entities.auth.AuthenticationResponse;
 import fr.nkosmos.felix.api.common.entities.discord.DiscordUser;
-import fr.nkosmos.felix.api.common.entities.marketplace.Resource;
 import fr.nkosmos.felix.api.common.entities.marketplace.comment.Comment;
-import fr.nkosmos.felix.api.common.entities.user.impl.PublicUser;
+import fr.nkosmos.felix.api.common.entities.marketplace.resource.impl.PersonalResource;
+import fr.nkosmos.felix.api.common.entities.marketplace.resource.impl.Resource;
 import fr.nkosmos.felix.api.common.entities.user.impl.SelfUser;
+import fr.nkosmos.felix.api.common.entities.user.impl.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import okhttp3.*;
@@ -76,7 +77,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
     }
 
     @Override
-    public PendingRequest<PublicUser> requestUser(UUID userId) {
+    public PendingRequest<User> requestUser(UUID userId) {
         requiresAuthorization();
 
         return createRequest(
@@ -86,7 +87,7 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
         )
                 .setRateLimiter(getRateLimiter("/users"))
                 .setStatusCodeValidator(StatusCodeValidator.ACCEPT_200)
-                .build(response -> RequestUtils.toJson(response, PublicUser.class), HANDLER);
+                .build(response -> RequestUtils.toJson(response, User.class), HANDLER);
     }
 
     @Override
@@ -147,13 +148,13 @@ public @Data class ClientImpl extends Reliqua implements FelixClient {
     }
 
     @Override
-    public PendingRequest<Set<Resource.PersonalResource>> requestPersonalResources() {
+    public PendingRequest<Set<PersonalResource>> requestPersonalResources() {
         requiresAuthorization();
         return null;
     }
 
     @Override
-    public PendingRequest<Resource.PersonalResource> requestPersonalResource(UUID uuid) {
+    public PendingRequest<PersonalResource> requestPersonalResource(UUID uuid) {
         requiresAuthorization();
         return null;
     }

@@ -10,7 +10,7 @@ import java.util.UUID;
  *
  * @author xTrM_
  */
-public class SelfUser extends PublicUser {
+public class SelfUser extends User {
 
     public SelfUser(String username, String displayName, UserStatus status, String description, String profilePicture, UUID uuid, UserType userType) {
         super(username, displayName, status, description, profilePicture, uuid, userType);

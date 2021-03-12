@@ -1,4 +1,4 @@
-package fr.nkosmos.felix.api.common.entities.marketplace;
+package fr.nkosmos.felix.api.common.entities.marketplace.resource;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
